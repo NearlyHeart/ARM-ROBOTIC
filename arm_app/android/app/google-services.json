@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "738780955240",
+    "firebase_url": "https://projectarmrobot-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "projectarmrobot",
+    "storage_bucket": "projectarmrobot.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:738780955240:android:a65940e86803c3824bb1dd",
+        "android_client_info": {
+          "package_name": "com.example.arm_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "738780955240-1ilg959cr3i87mnsfcb728ihs0566gcg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2YZ8QlJZFocWYRLOuyhMey0nsZUa0CpM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "738780955240-1ilg959cr3i87mnsfcb728ihs0566gcg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:738780955240:android:07b98c51fd6cb07a4bb1dd",
+        "android_client_info": {
+          "package_name": "com.example.arm_robot_v1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "738780955240-1ilg959cr3i87mnsfcb728ihs0566gcg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2YZ8QlJZFocWYRLOuyhMey0nsZUa0CpM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "738780955240-1ilg959cr3i87mnsfcb728ihs0566gcg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
