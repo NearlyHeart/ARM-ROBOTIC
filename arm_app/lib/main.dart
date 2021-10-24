@@ -1,8 +1,9 @@
 // @dart=2.9
 import 'package:arm_app/Auto.dart';
 import 'package:arm_app/Constants.dart';
-import 'package:arm_app/Dashboard/Geometriske/Cylinder.dart';
-import 'package:arm_app/Dashboard/Geometriske/Srevo.dart';
+import 'package:arm_app/Dashboard/Check/Cylinder.dart';
+import 'package:arm_app/Dashboard/Check/Electronic.dart';
+import 'package:arm_app/Dashboard/Check/Srevo.dart';
 
 import 'package:arm_app/Homepage.dart';
 import 'package:arm_app/Manual.dart';
@@ -35,4 +36,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-                                                                                                                                                                                                                                 

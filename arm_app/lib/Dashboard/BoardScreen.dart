@@ -1,7 +1,8 @@
 import 'package:arm_app/Constants.dart';
-import 'package:arm_app/Dashboard/Geometriske/Cylinder.dart';
-import 'package:arm_app/Dashboard/Geometriske/Pyramid.dart';
-import 'package:arm_app/Dashboard/Geometriske/Srevo.dart';
+import 'package:arm_app/Dashboard/Check/Cylinder.dart';
+import 'package:arm_app/Dashboard/Check/Pyramid.dart';
+import 'package:arm_app/Dashboard/Check/Electronic.dart';
+import 'package:arm_app/Dashboard/Check/Srevo.dart';
 import 'package:flutter/material.dart';
 
 class Board extends StatefulWidget {
@@ -38,101 +39,72 @@ class _BoardState extends State<Board> {
               style: const TextStyle(
                   fontWeight: FontWeight.bold, color: Colors.white),
             ),
-            Row(
-              children: [
-                SizedBox(
-                  width: 20,
-                ),
-                Title(
-                    color: bgAppbar,
-                    child: Text(
-                      "Geometriske former",
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontSize: 18,
-                      ),
-                    )),
-              ],
-            ),
+            // Row(
+            //   children: [
+            //     SizedBox(width: 100),
+            //     Title(
+            //         color: bgAppbar,
+            //         child: Text(
+            //           "Geometriske former",
+            //           style: const TextStyle(
+            //             fontWeight: FontWeight.bold,
+            //             color: Colors.white,
+            //             fontSize: 18,
+            //           ),
+            //         )),
+            //   ],
+            // ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                InkWell(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Srevo()));
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    margin:
-                        EdgeInsets.only(left: 0, top: 10, right: 0, bottom: 10),
-                    width: 100.0,
-                    height: 100,
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/images/servo.png',
-                          height: 95,
-                          width: 95,
-                        ),
-                      ],
-                    ),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                ),
-                SizedBox(width: 20),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Cylinder()));
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    margin:
-                        EdgeInsets.only(left: 0, top: 10, right: 0, bottom: 10),
-                    width: 100.0,
-                    height: 100,
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/images/A1.jpg',
-                          height: 95,
-                          width: 95,
+                  margin:
+                      EdgeInsets.only(left: 0, top: 10, right: 0, bottom: 10),
+                  width: 300,
+                  height: 230,
+                  child: Column(
+                    children: [
+                      SizedBox(height: 20),
+                      Title(
+                          color: bgAppbar,
+                          child: Text(
+                            "Electronic",
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: bgAppbar,
+                              fontSize: 25,
+                            ),
+                          )),
+                      Image.asset(
+                        'assets/images/A1.jpg',
+                        height: 100,
+                        width: 100,
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Electronic()));
+                        },
+                        child: Text(
+                          'เช็คจำนวน',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
                         ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(width: 20),
-                InkWell(
-                  onTap: () {
-                    // Navigator.push(context,
-                    //     MaterialPageRoute(builder: (context) => Pyramid()));
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    margin:
-                        EdgeInsets.only(left: 0, top: 10, right: 0, bottom: 10),
-                    width: 100.0,
-                    height: 100,
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/images/A1.jpg',
-                          height: 95,
-                          width: 95,
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                          primary: Color(0xFF061C31),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -140,101 +112,70 @@ class _BoardState extends State<Board> {
             Text("_________________________________________",
                 style: const TextStyle(
                     fontWeight: FontWeight.bold, color: Colors.white)),
-            Row(
-              children: [
-                SizedBox(
-                  width: 20,
-                ),
-                Title(
-                    color: bgAppbar,
-                    child: Text(
-                      "Electronic",
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontSize: 18,
-                      ),
-                    )),
-              ],
-            ),
+            // Row(
+            //   children: [
+            //     SizedBox(width: 150),
+            //     Title(
+            //         color: bgAppbar,
+            //         child: Text(
+            //           "Electronic",
+            //           style: const TextStyle(
+            //             fontWeight: FontWeight.bold,
+            //             color: Colors.white,
+            //             fontSize: 18,
+            //           ),
+            //         )),
+            //   ],
+            // ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                InkWell(
-                  onTap: () {
-                    // Navigator.push(context,
-                    //     MaterialPageRoute(builder: (context) => Cube()));
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    margin:
-                        EdgeInsets.only(left: 0, top: 10, right: 0, bottom: 10),
-                    width: 100.0,
-                    height: 100,
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/images/A1.jpg',
-                          height: 95,
-                          width: 95,
-                        ),
-                      ],
-                    ),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                ),
-                SizedBox(width: 20),
-                InkWell(
-                  onTap: () {
-                    // Navigator.push(context,
-                    //     MaterialPageRoute(builder: (context) => Cube()));
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    margin:
-                        EdgeInsets.only(left: 0, top: 10, right: 0, bottom: 10),
-                    width: 100.0,
-                    height: 100,
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/images/A1.jpg',
-                          height: 95,
-                          width: 95,
+                  margin:
+                      EdgeInsets.only(left: 0, top: 10, right: 0, bottom: 10),
+                  width: 300,
+                  height: 230,
+                  child: Column(
+                    children: [
+                      SizedBox(height: 20),
+                      Title(
+                          color: bgAppbar,
+                          child: Text(
+                            "Geometriske Former",
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: bgAppbar,
+                              fontSize: 25,
+                            ),
+                          )),
+                      Image.asset(
+                        'assets/images/A1.jpg',
+                        height: 100,
+                        width: 100,
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          // Navigator.push(context,
+                          //     MaterialPageRoute(builder: (context) => Srevo()));
+                        },
+                        child: Text(
+                          'เช็คจำนวน',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
                         ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(width: 20),
-                InkWell(
-                  onTap: () {
-                    // Navigator.push(context,
-                    //     MaterialPageRoute(builder: (context) => Cube()));
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    margin:
-                        EdgeInsets.only(left: 0, top: 10, right: 0, bottom: 10),
-                    width: 100.0,
-                    height: 100,
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/images/A1.jpg',
-                          height: 95,
-                          width: 95,
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                          primary: Color(0xFF061C31),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ],

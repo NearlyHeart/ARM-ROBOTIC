@@ -40,7 +40,7 @@ class _AutoState extends State<Auto> {
                         width: 100.0,
                         height: 100,
                         child: Image.asset(
-                          'assets/images/srevo.png',
+                          'assets/images/servo.png',
                           height: 100,
                           width: 50,
                         ),
@@ -72,7 +72,7 @@ class _AutoState extends State<Auto> {
                         width: 100.0,
                         height: 100,
                         child: Image.asset(
-                          'assets/images/srevo.png',
+                          'assets/images/servo.png',
                           height: 70,
                           width: 50,
                         ),
@@ -100,7 +100,7 @@ class _AutoState extends State<Auto> {
                         width: 100.0,
                         height: 100,
                         child: Image.asset(
-                          'assets/images/srevo.png',
+                          'assets/images/servo.png',
                           height: 70,
                           width: 50,
                         ),
@@ -128,7 +128,7 @@ class _AutoState extends State<Auto> {
                         width: 100.0,
                         height: 100,
                         child: Image.asset(
-                          'assets/images/srevo.png',
+                          'assets/images/servo.png',
                           height: 70,
                           width: 50,
                         ),

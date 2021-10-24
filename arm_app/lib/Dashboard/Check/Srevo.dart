@@ -42,7 +42,7 @@ class Srevo extends StatelessWidget {
                   width: 180,
                   height: 180,
                   child: Image.asset(
-                    'assets/images/srevo.png',
+                    'assets/images/servo.png',
                   ),
                 ),
                 SizedBox(width: 15),
