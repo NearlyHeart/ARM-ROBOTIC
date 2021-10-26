@@ -1,7 +1,6 @@
 // @dart=2.9
 
 import 'package:arm_app/Constants.dart';
-import 'package:arm_app/Service/Database.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -33,7 +32,7 @@ class Electronic extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 40),
+            SizedBox(height: 5),
             Row(
               children: [
                 SizedBox(width: 10),

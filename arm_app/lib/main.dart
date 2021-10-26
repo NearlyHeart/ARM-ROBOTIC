@@ -3,12 +3,13 @@ import 'package:arm_app/Auto.dart';
 import 'package:arm_app/Constants.dart';
 import 'package:arm_app/Dashboard/Check/Cylinder.dart';
 import 'package:arm_app/Dashboard/Check/Electronic.dart';
-import 'package:arm_app/Dashboard/Check/Srevo.dart';
+import 'package:arm_app/Keep/Srevo.dart';
 
 import 'package:arm_app/Homepage.dart';
 import 'package:arm_app/Manual.dart';
 import 'package:arm_app/Manual_R.dart';
 import 'package:arm_app/Manual_R2..dart';
+import 'package:arm_app/Ts/ts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
               GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme.apply(
                     bodyColor: Colors.white,
                   ))),
-      home: Homepage(),
+      home: BottomNavBar(),
     );
   }
 }

@@ -2,7 +2,7 @@ import 'package:arm_app/Constants.dart';
 import 'package:arm_app/Dashboard/Check/Cylinder.dart';
 import 'package:arm_app/Dashboard/Check/Pyramid.dart';
 import 'package:arm_app/Dashboard/Check/Electronic.dart';
-import 'package:arm_app/Dashboard/Check/Srevo.dart';
+import 'package:arm_app/Keep/Srevo.dart';
 import 'package:flutter/material.dart';
 
 class Board extends StatefulWidget {
