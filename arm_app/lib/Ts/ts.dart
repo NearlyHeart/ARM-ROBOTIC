@@ -1,4 +1,5 @@
 import 'package:arm_app/Constants.dart';
+import 'package:arm_app/Dashboard/Check/Cube.dart';
 import 'package:arm_app/Dashboard/Check/Cylinder.dart';
 import 'package:arm_app/Dashboard/Check/Electronic.dart';
 import 'package:arm_app/Homepage.dart';
@@ -13,8 +14,8 @@ class BottomNavBar extends StatefulWidget {
 class _BottomNavBarState extends State<BottomNavBar> {
   int page = 0;
   final sreen = [
-    Electronic(),
     Cylinder(),
+    Cube(),
   ];
   @override
   Widget build(BuildContext context) {

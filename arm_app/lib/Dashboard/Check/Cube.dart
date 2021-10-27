@@ -6,15 +6,15 @@ CollectionReference Cylinder_db =
     FirebaseFirestore.instance.collection("Cylinder");
 final Test_db = FirebaseFirestore.instance.collection("Cylinder");
 
-class Cylinder extends StatefulWidget {
+class Cube extends StatefulWidget {
   final int xs;
-  Cylinder({Key key, this.xs}) : super(key: key);
+  Cube({Key key, this.xs}) : super(key: key);
 
   @override
-  _CylinderState createState() => _CylinderState();
+  _CubeState createState() => _CubeState();
 }
 
-class _CylinderState extends State<Cylinder> {
+class _CubeState extends State<Cube> {
   int xs, y, sum;
 
   @override
