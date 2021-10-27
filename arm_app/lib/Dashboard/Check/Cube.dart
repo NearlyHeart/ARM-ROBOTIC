@@ -2,9 +2,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-CollectionReference Cylinder_db =
-    FirebaseFirestore.instance.collection("Cylinder");
-final Test_db = FirebaseFirestore.instance.collection("Cylinder");
+// CollectionReference Cylinder_db = FirebaseFirestore.instance.collection("Cube");
+// final Test_db = FirebaseFirestore.instance.collection("Cube");
 
 class Cube extends StatefulWidget {
   final int xs;
@@ -21,7 +20,7 @@ class _CubeState extends State<Cube> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Cylinder"),
+        title: Text("Cube"),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -41,14 +40,14 @@ class _CubeState extends State<Cube> {
                   width: 160,
                   height: 160,
                   child: Image.asset(
-                    'assets/images/Cylinder.png',
+                    'assets/images/Cube.png',
                   ),
                 ),
                 SizedBox(width: 25),
                 StreamBuilder(
                   stream: FirebaseFirestore.instance
-                      .collection('Cylinder')
-                      .doc('Cylinder_Sum') //ID OF DOCUMENT
+                      .collection('Cube')
+                      .doc('Cube_Sum') //ID OF DOCUMENT
                       .snapshots(),
                   builder: (context, snapshot) {
                     if (!snapshot.hasData) {
@@ -69,23 +68,23 @@ class _CubeState extends State<Cube> {
                       child: Column(
                         children: [
                           SizedBox(height: 30),
-                          ElevatedButton(
-                            onPressed: () {
-                              set(total);
-                            },
-                            child: Text(
-                              'เพิ่ม',
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                                fontSize: 18,
-                              ),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                              primary: Color(0xFF061C31),
-                            ),
-                          ),
+                          // ElevatedButton(
+                          //   onPressed: () {
+                          //     set(total);
+                          //   },
+                          //   child: Text(
+                          //     'เพิ่ม',
+                          //     style: const TextStyle(
+                          //       fontWeight: FontWeight.bold,
+                          //       color: Colors.white,
+                          //       fontSize: 18,
+                          //     ),
+                          //   ),
+                          //   style: ElevatedButton.styleFrom(
+                          //     padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                          //     primary: Color(0xFF061C31),
+                          //   ),
+                          // ),
                           Text(
                             "TOTAL",
                             style: TextStyle(
@@ -96,7 +95,7 @@ class _CubeState extends State<Cube> {
                           Text(
                             document['Sum'].toString(),
                             style: TextStyle(
-                              fontSize: 30,
+                              fontSize: 50,
                               color: Colors.red,
                             ),
                           ),
@@ -119,8 +118,8 @@ class _CubeState extends State<Cube> {
                 SizedBox(width: 20),
                 StreamBuilder(
                   stream: FirebaseFirestore.instance
-                      .collection('Cylinder')
-                      .doc('Cylinder_Blue') //ID OF DOCUMENT
+                      .collection('Cube')
+                      .doc('Cube_Blue') //ID OF DOCUMENT
                       .snapshots(),
                   builder: (context, snapshot) {
                     if (!snapshot.hasData) {
@@ -184,8 +183,8 @@ class _CubeState extends State<Cube> {
                 SizedBox(width: 20),
                 StreamBuilder(
                   stream: FirebaseFirestore.instance
-                      .collection('Cylinder')
-                      .doc('Cylinder_Red') //ID OF DOCUMENT
+                      .collection('Cube')
+                      .doc('Cube_Red') //ID OF DOCUMENT
                       .snapshots(),
                   builder: (context, snapshot) {
                     if (!snapshot.hasData) {
@@ -254,8 +253,8 @@ class _CubeState extends State<Cube> {
                 SizedBox(width: 20),
                 StreamBuilder(
                   stream: FirebaseFirestore.instance
-                      .collection('Cylinder')
-                      .doc('Cylinder_Green') //ID OF DOCUMENT
+                      .collection('Cube')
+                      .doc('Cube_Green') //ID OF DOCUMENT
                       .snapshots(),
                   builder: (context, snapshot) {
                     if (!snapshot.hasData) {
@@ -319,8 +318,8 @@ class _CubeState extends State<Cube> {
                 SizedBox(width: 20),
                 StreamBuilder(
                   stream: FirebaseFirestore.instance
-                      .collection('Cylinder')
-                      .doc('Cylinder_Yellow') //ID OF DOCUMENT
+                      .collection('Cube')
+                      .doc('Cube_Yellow') //ID OF DOCUMENT
                       .snapshots(),
                   builder: (context, snapshot) {
                     if (!snapshot.hasData) {
@@ -396,20 +395,20 @@ class _CubeState extends State<Cube> {
   }
 }
 
-Future<void> set(int total) {
-  return Test_db.doc('Cylinder_Sum')
-      .set({
-        'Sum': total + 1,
-      })
-      .then((value) => print("success"))
-      .catchError((error) => print("Failed to add user: $error"));
-}
+// Future<void> set(int total) {
+//   return Test_db.doc('Cube_Sum')
+//       .set({
+//         'Sum': total + 1,
+//       })
+//       .then((value) => print("success"))
+//       .catchError((error) => print("Failed to add user: $error"));
+// }
 
-Future<void> setBlue(int total) {
-  return Test_db.doc('Cylinder_Blue')
-      .set({
-        'Count': total + 1,
-      })
-      .then((value) => print("success"))
-      .catchError((error) => print("Failed to add user: $error"));
-}
+// Future<void> setBlue(int total) {
+//   return Test_db.doc('Cylinder_Blue')
+//       .set({
+//         'Count': total + 1,
+//       })
+//       .then((value) => print("success"))
+//       .catchError((error) => print("Failed to add user: $error"));
+// }

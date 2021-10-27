@@ -73,24 +73,24 @@ class Electronic extends StatelessWidget {
                       height: 180,
                       child: Column(
                         children: [
-                          SizedBox(height: 50),
-                          ElevatedButton(
-                            onPressed: () {
-                              addServo();
-                            },
-                            child: Text(
-                              'เพิ่ม',
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                                fontSize: 18,
-                              ),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                              primary: Color(0xFF061C31),
-                            ),
-                          ),
+                          SizedBox(height: 40),
+                          // ElevatedButton(
+                          //   onPressed: () {
+                          //     addServo();
+                          //   },
+                          //   child: Text(
+                          //     'เพิ่ม',
+                          //     style: const TextStyle(
+                          //       fontWeight: FontWeight.bold,
+                          //       color: Colors.white,
+                          //       fontSize: 18,
+                          //     ),
+                          //   ),
+                          //   style: ElevatedButton.styleFrom(
+                          //     padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                          //     primary: Color(0xFF061C31),
+                          //   ),
+                          // ),
                           Text(
                             "TOTAL",
                             style: TextStyle(
@@ -101,7 +101,7 @@ class Electronic extends StatelessWidget {
                           Text(
                             documentSnapshotList.length.toString(),
                             style: TextStyle(
-                              fontSize: 30,
+                              fontSize: 50,
                               color: Colors.red,
                             ),
                           ),
@@ -152,24 +152,24 @@ class Electronic extends StatelessWidget {
                       height: 180,
                       child: Column(
                         children: [
-                          SizedBox(height: 50),
-                          ElevatedButton(
-                            onPressed: () {
-                              addSwitch();
-                            },
-                            child: Text(
-                              'เพิ่ม',
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                                fontSize: 18,
-                              ),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                              primary: Color(0xFF061C31),
-                            ),
-                          ),
+                          SizedBox(height: 40),
+                          // ElevatedButton(
+                          //   onPressed: () {
+                          //     addSwitch();
+                          //   },
+                          //   child: Text(
+                          //     'เพิ่ม',
+                          //     style: const TextStyle(
+                          //       fontWeight: FontWeight.bold,
+                          //       color: Colors.white,
+                          //       fontSize: 18,
+                          //     ),
+                          //   ),
+                          //   style: ElevatedButton.styleFrom(
+                          //     padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                          //     primary: Color(0xFF061C31),
+                          //   ),
+                          // ),
                           Text(
                             "TOTAL",
                             style: TextStyle(
@@ -180,7 +180,7 @@ class Electronic extends StatelessWidget {
                           Text(
                             documentSnapshotList.length.toString(),
                             style: TextStyle(
-                              fontSize: 30,
+                              fontSize: 50,
                               color: Colors.red,
                             ),
                           ),
@@ -231,24 +231,24 @@ class Electronic extends StatelessWidget {
                       height: 180,
                       child: Column(
                         children: [
-                          SizedBox(height: 50),
-                          ElevatedButton(
-                            onPressed: () {
-                              addCapacitor();
-                            },
-                            child: Text(
-                              'เพิ่ม',
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                                fontSize: 18,
-                              ),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                              primary: Color(0xFF061C31),
-                            ),
-                          ),
+                          SizedBox(height: 40),
+                          // ElevatedButton(
+                          //   onPressed: () {
+                          //     addCapacitor();
+                          //   },
+                          //   child: Text(
+                          //     'เพิ่ม',
+                          //     style: const TextStyle(
+                          //       fontWeight: FontWeight.bold,
+                          //       color: Colors.white,
+                          //       fontSize: 18,
+                          //     ),
+                          //   ),
+                          //   style: ElevatedButton.styleFrom(
+                          //     padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                          //     primary: Color(0xFF061C31),
+                          //   ),
+                          // ),
                           Text(
                             "TOTAL",
                             style: TextStyle(
@@ -259,7 +259,7 @@ class Electronic extends StatelessWidget {
                           Text(
                             documentSnapshotList.length.toString(),
                             style: TextStyle(
-                              fontSize: 30,
+                              fontSize: 50,
                               color: Colors.red,
                             ),
                           ),

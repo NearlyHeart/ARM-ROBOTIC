@@ -1,8 +1,8 @@
 import 'package:arm_app/Constants.dart';
 import 'package:arm_app/Dashboard/Check/Cylinder.dart';
-import 'package:arm_app/Dashboard/Check/Pyramid.dart';
 import 'package:arm_app/Dashboard/Check/Electronic.dart';
 import 'package:arm_app/Keep/Srevo.dart';
+import 'package:arm_app/Ts/ts.dart';
 import 'package:flutter/material.dart';
 
 class Board extends StatefulWidget {
@@ -80,7 +80,7 @@ class _BoardState extends State<Board> {
                             ),
                           )),
                       Image.asset(
-                        'assets/images/A1.jpg',
+                        'assets/images/GO.png',
                         height: 100,
                         width: 100,
                       ),
@@ -153,14 +153,16 @@ class _BoardState extends State<Board> {
                             ),
                           )),
                       Image.asset(
-                        'assets/images/A1.jpg',
+                        'assets/images/EL.png',
                         height: 100,
                         width: 100,
                       ),
                       ElevatedButton(
                         onPressed: () {
-                          // Navigator.push(context,
-                          //     MaterialPageRoute(builder: (context) => Srevo()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => BottomNavBar()));
                         },
                         child: Text(
                           'เช็คจำนวน',

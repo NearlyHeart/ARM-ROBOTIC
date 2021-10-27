@@ -2,26 +2,24 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-CollectionReference Cylinder_db =
-    FirebaseFirestore.instance.collection("Cylinder");
-final Test_db = FirebaseFirestore.instance.collection("Cylinder");
+// CollectionReference Cylinder_db = FirebaseFirestore.instance.collection("Triangle");
+// final Test_db = FirebaseFirestore.instance.collection("Triangle");
 
-class Cylinder extends StatefulWidget {
-  final int xs;
-  Cylinder({Key key, this.xs}) : super(key: key);
+class Equilateral_triangle extends StatefulWidget {
+  Equilateral_triangle({
+    Key key,
+  }) : super(key: key);
 
   @override
-  _CylinderState createState() => _CylinderState();
+  _Equilateral_triangleState createState() => _Equilateral_triangleState();
 }
 
-class _CylinderState extends State<Cylinder> {
-  int xs, y, sum;
-
+class _Equilateral_triangleState extends State<Equilateral_triangle> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Cylinder"),
+        title: Text(" Equilateral Triangle"),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -41,14 +39,14 @@ class _CylinderState extends State<Cylinder> {
                   width: 160,
                   height: 160,
                   child: Image.asset(
-                    'assets/images/Cylinder.png',
+                    'assets/images/Triangle.png',
                   ),
                 ),
                 SizedBox(width: 25),
                 StreamBuilder(
                   stream: FirebaseFirestore.instance
-                      .collection('Cylinder')
-                      .doc('Cylinder_Sum') //ID OF DOCUMENT
+                      .collection('Triangle')
+                      .doc('Triangle_Sum') //ID OF DOCUMENT
                       .snapshots(),
                   builder: (context, snapshot) {
                     if (!snapshot.hasData) {
@@ -119,8 +117,8 @@ class _CylinderState extends State<Cylinder> {
                 SizedBox(width: 20),
                 StreamBuilder(
                   stream: FirebaseFirestore.instance
-                      .collection('Cylinder')
-                      .doc('Cylinder_Blue') //ID OF DOCUMENT
+                      .collection('Triangle')
+                      .doc('Triangle_Blue') //ID OF DOCUMENT
                       .snapshots(),
                   builder: (context, snapshot) {
                     if (!snapshot.hasData) {
@@ -184,8 +182,8 @@ class _CylinderState extends State<Cylinder> {
                 SizedBox(width: 20),
                 StreamBuilder(
                   stream: FirebaseFirestore.instance
-                      .collection('Cylinder')
-                      .doc('Cylinder_Red') //ID OF DOCUMENT
+                      .collection('Triangle')
+                      .doc('Triangle_Red') //ID OF DOCUMENT
                       .snapshots(),
                   builder: (context, snapshot) {
                     if (!snapshot.hasData) {
@@ -254,8 +252,8 @@ class _CylinderState extends State<Cylinder> {
                 SizedBox(width: 20),
                 StreamBuilder(
                   stream: FirebaseFirestore.instance
-                      .collection('Cylinder')
-                      .doc('Cylinder_Green') //ID OF DOCUMENT
+                      .collection('Triangle')
+                      .doc('Triangle_Green') //ID OF DOCUMENT
                       .snapshots(),
                   builder: (context, snapshot) {
                     if (!snapshot.hasData) {
@@ -319,8 +317,8 @@ class _CylinderState extends State<Cylinder> {
                 SizedBox(width: 20),
                 StreamBuilder(
                   stream: FirebaseFirestore.instance
-                      .collection('Cylinder')
-                      .doc('Cylinder_Yellow') //ID OF DOCUMENT
+                      .collection('Triangle')
+                      .doc('Triangle_Yellow') //ID OF DOCUMENT
                       .snapshots(),
                   builder: (context, snapshot) {
                     if (!snapshot.hasData) {
@@ -340,23 +338,7 @@ class _CylinderState extends State<Cylinder> {
                       child: Container(
                         child: Column(
                           children: [
-                            // ElevatedButton(
-                            //   onPressed: () {
-                            //     setBlue(total);
-                            //   },
-                            //   child: Text(
-                            //     'เพิ่ม',
-                            //     style: const TextStyle(
-                            //       fontWeight: FontWeight.bold,
-                            //       color: Colors.white,
-                            //       fontSize: 16,
-                            //     ),
-                            //   ),
-                            //   style: ElevatedButton.styleFrom(
-                            //     // padding: EdgeInsets.fromLTRB(1, 10, 20, 10),
-                            //     primary: Color(0xFF061C31),
-                            //   ),
-                            // ),
+                            
                             Container(
                               decoration: BoxDecoration(
                                 color: Colors.yellow.shade400,
@@ -396,20 +378,3 @@ class _CylinderState extends State<Cylinder> {
   }
 }
 
-Future<void> set(int total) {
-  return Test_db.doc('Cylinder_Sum')
-      .set({
-        'Sum': total + 1,
-      })
-      .then((value) => print("success"))
-      .catchError((error) => print("Failed to add user: $error"));
-}
-
-Future<void> setBlue(int total) {
-  return Test_db.doc('Cylinder_Blue')
-      .set({
-        'Count': total + 1,
-      })
-      .then((value) => print("success"))
-      .catchError((error) => print("Failed to add user: $error"));
-}

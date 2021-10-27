@@ -1,4 +1,5 @@
 import 'package:arm_app/Constants.dart';
+import 'package:arm_app/Dashboard/Check/Triangle.dart';
 import 'package:arm_app/Dashboard/Check/Cube.dart';
 import 'package:arm_app/Dashboard/Check/Cylinder.dart';
 import 'package:arm_app/Dashboard/Check/Electronic.dart';
@@ -16,6 +17,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   final sreen = [
     Cylinder(),
     Cube(),
+    Equilateral_triangle(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -26,6 +28,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         items: <Widget>[
           Icon(Icons.accessibility, size: 30),
           Icon(Icons.list, size: 30),
+          Icon(Icons.add_business_sharp, size: 30),
         ],
         color: bgAppbar,
         buttonBackgroundColor: bgAppbar,
