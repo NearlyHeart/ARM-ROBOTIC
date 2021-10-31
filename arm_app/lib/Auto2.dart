@@ -8,6 +8,8 @@ final Select_Cylinder =
     FirebaseFirestore.instance.collection("Select_Cylinder");
 final Select_Triangle =
     FirebaseFirestore.instance.collection("Select_Triangle");
+final Select_Electronic =
+    FirebaseFirestore.instance.collection("Select_Electronic");
 
 class Auto2 extends StatefulWidget {
   Auto2({Key key}) : super(key: key);
@@ -22,9 +24,28 @@ class _Auto2State extends State<Auto2> {
   bool blue, green, yellow, red;
   bool Cylinder_Blue, Cylinder_Green, Cylinder_Yellow, Cylinder_Red;
   bool Triangle_Blue, Triangle_Green, Triangle_Yellow, Triangle_Red;
+  bool Electronic_Servo, Electronic_Capacitor, Electronic_Switch;
 
   @override
   Widget build(BuildContext context) {
+    resetCube_Blue();
+    resetCube_Green();
+    resetCube_Yellow();
+    resetCube_Red();
+    ////////////////////////////////////////////////////////////////
+    resetCylinder_Blue();
+    resetCylinder_Green();
+    resetCylinder_Yellow();
+    resetCylinder_Red();
+    ////////////////////////////////////////////////////////////////
+    resetTriangle_Blue();
+    resetTriangle_Green();
+    resetTriangle_Yellow();
+    resetTriangle_Red();
+    ////////////////////////////////////////////////////////////////
+    resetElectronic_Servo();
+    resetElectronic_Capacitor();
+    resetElectronic_Switch();
     return Scaffold(
       appBar: AppBar(
         title: Text("Auto"),
@@ -52,8 +73,18 @@ class _Auto2State extends State<Auto2> {
                 resetTriangle_Green();
                 resetTriangle_Yellow();
                 resetTriangle_Red();
-                // Navigator.of(context)
-                //     .push(new MaterialPageRoute(builder: (context) => Auto2()));
+                ////////////////////////////////////////////////////////////////
+                resetElectronic_Servo();
+                resetElectronic_Capacitor();
+                resetElectronic_Switch();
+                // Navigator.pushAndRemoveUntil(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => Auto2()),
+                //   (Route<dynamic> route) => false,
+                // );
+                // Navigator.pop(context);
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => Auto2()));
               },
               child: Text(
                 "CANCEL",
@@ -80,6 +111,10 @@ class _Auto2State extends State<Auto2> {
                 setTriangle_Blue(Triangle_Blue);
                 setTriangle_Yellow(Triangle_Yellow);
                 setTriangle_Red(Triangle_Red);
+                ////////////////////////////////////////////////////////////////
+                setElectronic_Servo(Electronic_Servo);
+                setElectronic_Capacitor(Electronic_Capacitor);
+                setElectronic_Switch(Electronic_Switch);
               },
               child: Text(
                 "START",
@@ -97,6 +132,212 @@ class _Auto2State extends State<Auto2> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Container(
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white24,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        margin: EdgeInsets.only(
+                            left: 10, top: 10, right: 10, bottom: 10),
+                        width: 370,
+                        height: 250,
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  width: 370,
+                                  height: 80,
+                                  child: Row(
+                                    children: [
+                                      SizedBox(width: 90),
+                                      Text(
+                                        'Electronic',
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: bgAppbar,
+                                          fontSize: 40,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                            Spacer(),
+                            Row(
+                              children: [
+                                SizedBox(width: 20),
+                                Column(
+                                  children: [
+                                    SizedBox(height: 10),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      width: 100,
+                                      height: 100,
+                                      child: Image.asset(
+                                        'assets/images/servo.png',
+                                        height: 70,
+                                        width: 50,
+                                      ),
+                                    ),
+                                    StreamBuilder(
+                                      stream: FirebaseFirestore.instance
+                                          .collection('Select_Electronic')
+                                          .doc(
+                                              'Electronic_Servo') //ID OF DOCUMENT
+                                          .snapshots(),
+                                      builder: (context, snapshot) {
+                                        if (!snapshot.hasData) {
+                                          return new CircularProgressIndicator();
+                                        }
+                                        return Container(
+                                          child: Column(
+                                            children: [
+                                              Checkbox(
+                                                activeColor: bgAppbar,
+                                                value: CH.valueElectronic_Servo,
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    CH.valueElectronic_Servo =
+                                                        !CH.valueElectronic_Servo;
+                                                  });
+                                                  return Electronic_Servo =
+                                                      CH.valueElectronic_Servo;
+                                                },
+                                              )
+                                            ],
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ],
+                                ),
+                                //////////////////////////////////////////////////
+                                Spacer(),
+                                Column(
+                                  children: [
+                                    SizedBox(height: 10),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      width: 100,
+                                      height: 100,
+                                      child: Image.asset(
+                                        'assets/images/Capacitor.png',
+                                        height: 90,
+                                        width: 90,
+                                      ),
+                                    ),
+                                    StreamBuilder(
+                                      stream: FirebaseFirestore.instance
+                                          .collection('Select_Electronic')
+                                          .doc(
+                                              'Electronic_Capacitor') //ID OF DOCUMENT
+                                          .snapshots(),
+                                      builder: (context, snapshot) {
+                                        if (!snapshot.hasData) {
+                                          return new CircularProgressIndicator();
+                                        }
+                                        return Container(
+                                          child: Column(
+                                            children: [
+                                              Checkbox(
+                                                activeColor: bgAppbar,
+                                                value: CH
+                                                    .valueElectronic_Capacitor,
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    CH.valueElectronic_Capacitor =
+                                                        !CH.valueElectronic_Capacitor;
+                                                  });
+                                                  return Electronic_Capacitor =
+                                                      CH.valueElectronic_Capacitor;
+                                                },
+                                              )
+                                            ],
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ],
+                                ),
+                                Spacer(),
+                                Column(
+                                  children: [
+                                    SizedBox(height: 10),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      width: 100,
+                                      height: 100,
+                                      child: Image.asset(
+                                        'assets/images/switch.png',
+                                        height: 70,
+                                        width: 50,
+                                      ),
+                                    ),
+                                    StreamBuilder(
+                                      stream: FirebaseFirestore.instance
+                                          .collection('Select_Electronic')
+                                          .doc(
+                                              'Electronic_Switch') //ID OF DOCUMENT
+                                          .snapshots(),
+                                      builder: (context, snapshot) {
+                                        if (!snapshot.hasData) {
+                                          return new CircularProgressIndicator();
+                                        }
+                                        return Container(
+                                          child: Column(
+                                            children: [
+                                              Checkbox(
+                                                activeColor: bgAppbar,
+                                                value:
+                                                    CH.valueElectronic_Switch,
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    CH.valueElectronic_Switch =
+                                                        !CH.valueElectronic_Switch;
+                                                  });
+                                                  return Electronic_Switch =
+                                                      CH.valueElectronic_Switch;
+                                                },
+                                              )
+                                            ],
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ],
+                                ),
+
+                                SizedBox(width: 20),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
             Container(
               child: Column(
                 children: [
@@ -845,6 +1086,10 @@ class Check {
   bool valueTriangle_green = false;
   bool valueTriangle_yellow = false;
   bool valueTriangle_red = false;
+  //////////////////////////////////////////////////////////////////////////////
+  bool valueElectronic_Servo = false;
+  bool valueElectronic_Capacitor = false;
+  bool valueElectronic_Switch = false;
 }
 
 /////////////////////////////////  Cube    ////////////////////////////////////
@@ -917,20 +1162,21 @@ Future<void> resetCylinder_Green() {
 }
 
 /////////////////////////////////  Triangle  ///////////////////////////////////
-Future<void> setTriangle_Blue(bool test1) {
-  return Select_Triangle.doc('Triangle_Blue').set({'Blue': test1});
+Future<void> setTriangle_Blue(bool Triangle_Blue) {
+  return Select_Triangle.doc('Triangle_Blue').set({'Blue': Triangle_Blue});
 }
 
-Future<void> setTriangle_Green(bool green) {
-  return Select_Triangle.doc('Triangle_Green').set({'Green': green});
+Future<void> setTriangle_Green(bool Triangle_Green) {
+  return Select_Triangle.doc('Triangle_Green').set({'Green': Triangle_Green});
 }
 
-Future<void> setTriangle_Yellow(bool yellow) {
-  return Select_Triangle.doc('Triangle_Yellow').set({'Yellow': yellow});
+Future<void> setTriangle_Yellow(bool Triangle_Yellow) {
+  return Select_Triangle.doc('Triangle_Yellow')
+      .set({'Yellow': Triangle_Yellow});
 }
 
-Future<void> setTriangle_Red(bool red) {
-  return Select_Triangle.doc('Triangle_Red').set({'Red': red});
+Future<void> setTriangle_Red(bool Triangle_Red) {
+  return Select_Triangle.doc('Triangle_Red').set({'Red': Triangle_Red});
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -948,4 +1194,34 @@ Future<void> resetTriangle_Yellow() {
 
 Future<void> resetTriangle_Green() {
   return Select_Triangle.doc('Triangle_Green').set({'Green': false});
+}
+
+/////////////////////////////////  Electronic  ///////////////////////////////////
+Future<void> setElectronic_Servo(bool Electronic_Servo) {
+  return Select_Electronic.doc('Electronic_Servo')
+      .set({'Servo': Electronic_Servo});
+}
+
+Future<void> setElectronic_Capacitor(bool Electronic_Capacitor) {
+  return Select_Electronic.doc('Electronic_Capacitor')
+      .set({'Capacitor': Electronic_Capacitor});
+}
+
+Future<void> setElectronic_Switch(bool Electronic_Capacitor) {
+  return Select_Electronic.doc('Electronic_Switch')
+      .set({'Switch': Electronic_Capacitor});
+}
+
+////////////////////////////////////////////////////////////////////////////////
+Future<void> resetElectronic_Servo() {
+  return Select_Electronic.doc('Electronic_Servo').set({'Servo': false});
+}
+
+Future<void> resetElectronic_Capacitor() {
+  return Select_Electronic.doc('Electronic_Capacitor')
+      .set({'Capacitor': false});
+}
+
+Future<void> resetElectronic_Switch() {
+  return Select_Electronic.doc('Electronic_Switch').set({'Switch': false});
 }

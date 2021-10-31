@@ -26,9 +26,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
         index: page,
         height: 50.0,
         items: <Widget>[
-          Icon(Icons.accessibility, size: 30),
-          Icon(Icons.list, size: 30),
-          Icon(Icons.add_business_sharp, size: 30),
+          // Icon(Icons.accessibility, size: 30),
+          Icon(Icons.crop_portrait_rounded, size: 30),
+          Icon(Icons.stop, size: 30),
+          Icon(Icons.signal_cellular_4_bar_sharp, size: 30),
         ],
         color: bgAppbar,
         buttonBackgroundColor: bgAppbar,

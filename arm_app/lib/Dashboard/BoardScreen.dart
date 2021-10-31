@@ -80,7 +80,7 @@ class _BoardState extends State<Board> {
                             ),
                           )),
                       Image.asset(
-                        'assets/images/GO.png',
+                        'assets/images/EL.png',
                         height: 100,
                         width: 100,
                       ),
@@ -153,7 +153,7 @@ class _BoardState extends State<Board> {
                             ),
                           )),
                       Image.asset(
-                        'assets/images/EL.png',
+                        'assets/images/GO.png',
                         height: 100,
                         width: 100,
                       ),
