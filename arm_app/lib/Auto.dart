@@ -21,8 +21,8 @@ class _AutoState extends State<Auto> {
         appBar: AppBar(
           title: Text("Auto"),
         ),
-        body: Padding(
-          padding: EdgeInsets.all(10),
+        body: SingleChildScrollView(
+          
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

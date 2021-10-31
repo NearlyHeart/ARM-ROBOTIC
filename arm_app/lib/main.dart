@@ -1,5 +1,6 @@
 // @dart=2.9
 import 'package:arm_app/Auto.dart';
+import 'package:arm_app/Auto2.dart';
 import 'package:arm_app/Constants.dart';
 import 'package:arm_app/Dashboard/Check/Cylinder.dart';
 import 'package:arm_app/Dashboard/Check/Electronic.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
               GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme.apply(
                     bodyColor: Colors.white,
                   ))),
-      home: Homepage(),
+      home: Auto2(),
     );
   }
 }
