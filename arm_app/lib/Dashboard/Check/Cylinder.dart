@@ -25,6 +25,7 @@ class _CylinderState extends State<Cylinder> {
       ),
       body: SingleChildScrollView(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(height: 10),
 

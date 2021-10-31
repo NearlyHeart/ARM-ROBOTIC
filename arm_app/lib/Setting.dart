@@ -1,5 +1,6 @@
 
 import 'package:arm_app/Auto.dart';
+import 'package:arm_app/Auto2.dart';
 import 'package:arm_app/Manual_R.dart';
 import 'package:arm_app/Manual_R2..dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,7 @@ class _SettingState extends State<Setting> {
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Auto()));
+                    context, MaterialPageRoute(builder: (context) => Auto2()));
               },
               child: Text('AUTOMATIC'),
               style: ElevatedButton.styleFrom(

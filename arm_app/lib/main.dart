@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
               GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme.apply(
                     bodyColor: Colors.white,
                   ))),
-      home: Auto2(),
+      home: Homepage(),
     );
   }
 }

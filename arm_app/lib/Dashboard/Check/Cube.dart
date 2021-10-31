@@ -24,6 +24,7 @@ class _CubeState extends State<Cube> {
       ),
       body: SingleChildScrollView(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(height: 10),
 
@@ -68,23 +69,6 @@ class _CubeState extends State<Cube> {
                       child: Column(
                         children: [
                           SizedBox(height: 30),
-                          // ElevatedButton(
-                          //   onPressed: () {
-                          //     set(total);
-                          //   },
-                          //   child: Text(
-                          //     'เพิ่ม',
-                          //     style: const TextStyle(
-                          //       fontWeight: FontWeight.bold,
-                          //       color: Colors.white,
-                          //       fontSize: 18,
-                          //     ),
-                          //   ),
-                          //   style: ElevatedButton.styleFrom(
-                          //     padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                          //     primary: Color(0xFF061C31),
-                          //   ),
-                          // ),
                           Text(
                             "TOTAL",
                             style: TextStyle(
@@ -139,23 +123,6 @@ class _CubeState extends State<Cube> {
                       child: Container(
                         child: Column(
                           children: [
-                            // ElevatedButton(
-                            //   onPressed: () {
-                            //     setBlue(total);
-                            //   },
-                            //   child: Text(
-                            //     'เพิ่ม',
-                            //     style: const TextStyle(
-                            //       fontWeight: FontWeight.bold,
-                            //       color: Colors.white,
-                            //       fontSize: 16,
-                            //     ),
-                            //   ),
-                            //   style: ElevatedButton.styleFrom(
-                            //     // padding: EdgeInsets.fromLTRB(1, 10, 20, 10),
-                            //     primary: Color(0xFF061C31),
-                            //   ),
-                            // ),
                             Container(
                               decoration: BoxDecoration(
                                 color: Colors.blue.shade900,
@@ -166,7 +133,6 @@ class _CubeState extends State<Cube> {
                               width: 160,
                               height: 100,
                             ),
-
                             Text(
                               document['Count'].toString(),
                               style: TextStyle(
@@ -204,23 +170,6 @@ class _CubeState extends State<Cube> {
                       child: Container(
                         child: Column(
                           children: [
-                            // ElevatedButton(
-                            //   onPressed: () {
-                            //     setBlue(total);
-                            //   },
-                            //   child: Text(
-                            //     'เพิ่ม',
-                            //     style: const TextStyle(
-                            //       fontWeight: FontWeight.bold,
-                            //       color: Colors.white,
-                            //       fontSize: 16,
-                            //     ),
-                            //   ),
-                            //   style: ElevatedButton.styleFrom(
-                            //     // padding: EdgeInsets.fromLTRB(1, 10, 20, 10),
-                            //     primary: Color(0xFF061C31),
-                            //   ),
-                            // ),
                             Container(
                               decoration: BoxDecoration(
                                 color: Color(0xFF720611),
@@ -274,23 +223,6 @@ class _CubeState extends State<Cube> {
                       child: Container(
                         child: Column(
                           children: [
-                            // ElevatedButton(
-                            //   onPressed: () {
-                            //     setBlue(total);
-                            //   },
-                            //   child: Text(
-                            //     'เพิ่ม',
-                            //     style: const TextStyle(
-                            //       fontWeight: FontWeight.bold,
-                            //       color: Colors.white,
-                            //       fontSize: 16,
-                            //     ),
-                            //   ),
-                            //   style: ElevatedButton.styleFrom(
-                            //     // padding: EdgeInsets.fromLTRB(1, 10, 20, 10),
-                            //     primary: Color(0xFF061C31),
-                            //   ),
-                            // ),
                             Container(
                               decoration: BoxDecoration(
                                 color: Colors.green.shade900,
@@ -301,7 +233,6 @@ class _CubeState extends State<Cube> {
                               width: 160,
                               height: 100,
                             ),
-
                             Text(
                               document['Count'].toString(),
                               style: TextStyle(
@@ -339,23 +270,6 @@ class _CubeState extends State<Cube> {
                       child: Container(
                         child: Column(
                           children: [
-                            // ElevatedButton(
-                            //   onPressed: () {
-                            //     setBlue(total);
-                            //   },
-                            //   child: Text(
-                            //     'เพิ่ม',
-                            //     style: const TextStyle(
-                            //       fontWeight: FontWeight.bold,
-                            //       color: Colors.white,
-                            //       fontSize: 16,
-                            //     ),
-                            //   ),
-                            //   style: ElevatedButton.styleFrom(
-                            //     // padding: EdgeInsets.fromLTRB(1, 10, 20, 10),
-                            //     primary: Color(0xFF061C31),
-                            //   ),
-                            // ),
                             Container(
                               decoration: BoxDecoration(
                                 color: Colors.yellow.shade400,
@@ -366,7 +280,6 @@ class _CubeState extends State<Cube> {
                               width: 160,
                               height: 100,
                             ),
-
                             Text(
                               document['Count'].toString(),
                               style: TextStyle(
@@ -394,21 +307,3 @@ class _CubeState extends State<Cube> {
     );
   }
 }
-
-// Future<void> set(int total) {
-//   return Test_db.doc('Cube_Sum')
-//       .set({
-//         'Sum': total + 1,
-//       })
-//       .then((value) => print("success"))
-//       .catchError((error) => print("Failed to add user: $error"));
-// }
-
-// Future<void> setBlue(int total) {
-//   return Test_db.doc('Cylinder_Blue')
-//       .set({
-//         'Count': total + 1,
-//       })
-//       .then((value) => print("success"))
-//       .catchError((error) => print("Failed to add user: $error"));
-// }

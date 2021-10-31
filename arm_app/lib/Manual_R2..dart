@@ -16,8 +16,6 @@ class _Manual2State extends State<Manual2> {
 
   int value;
 
-  
-
   void upvalue0() {
     Manual_Ref.child("axis0").set({'valu': currentSliderValue0});
   }
@@ -47,7 +45,7 @@ class _Manual2State extends State<Manual2> {
       final int currentSliderValue0 = event.snapshot.value;
     });
   }
-  
+
   double currentSliderValue0 = 0;
   double currentSliderValue1 = 0;
   double currentSliderValue2 = 0;
@@ -68,6 +66,7 @@ class _Manual2State extends State<Manual2> {
           child: Column(
             children: [
               Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(height: 30),
                   Text(
@@ -229,7 +228,7 @@ class _Manual2State extends State<Manual2> {
                         },
                       ),
                       Text(
-                        currentSliderValue2.round().toString(),
+                        currentSliderValue3.round().toString(),
                         style: TextStyle(
                           fontSize: 20,
                           color: Colors.blue[900],
