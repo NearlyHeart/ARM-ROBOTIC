@@ -29,248 +29,250 @@ class Electronic extends StatelessWidget {
         title: Text("Electronic"),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(height: 5),
-            Row(
-              children: [
-                SizedBox(width: 10),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(height: 5),
+              Row(
+                children: [
+                  SizedBox(width: 10),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    margin:
+                        EdgeInsets.only(left: 0, top: 10, right: 0, bottom: 10),
+                    width: 180,
+                    height: 180,
+                    child: Image.asset(
+                      'assets/images/servo.png',
+                    ),
                   ),
-                  margin:
-                      EdgeInsets.only(left: 0, top: 10, right: 0, bottom: 10),
-                  width: 180,
-                  height: 180,
-                  child: Image.asset(
-                    'assets/images/servo.png',
-                  ),
-                ),
-                SizedBox(width: 10),
-                StreamBuilder<QuerySnapshot>(
-                  stream: FirebaseFirestore.instance
-                      .collection('Servo')
-                      .snapshots(),
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return Center(
-                        child: Text("No Task Added"),
+                  SizedBox(width: 10),
+                  StreamBuilder<QuerySnapshot>(
+                    stream: FirebaseFirestore.instance
+                        .collection('Servo')
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: Text("No Task Added"),
+                        );
+                      }
+                      final documentSnapshotList = snapshot.data.docs;
+                      print(documentSnapshotList.length);
+                      return Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        margin: EdgeInsets.only(
+                            left: 0, top: 10, right: 0, bottom: 10),
+                        width: 180,
+                        height: 180,
+                        child: Column(
+                          children: [
+                            SizedBox(height: 40),
+                            // ElevatedButton(
+                            //   onPressed: () {
+                            //     addServo();
+                            //   },
+                            //   child: Text(
+                            //     'เพิ่ม',
+                            //     style: const TextStyle(
+                            //       fontWeight: FontWeight.bold,
+                            //       color: Colors.white,
+                            //       fontSize: 18,
+                            //     ),
+                            //   ),
+                            //   style: ElevatedButton.styleFrom(
+                            //     padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                            //     primary: Color(0xFF061C31),
+                            //   ),
+                            // ),
+                            Text(
+                              "TOTAL",
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black,
+                              ),
+                            ),
+                            Text(
+                              documentSnapshotList.length.toString(),
+                              style: TextStyle(
+                                fontSize: 50,
+                                color: Colors.red,
+                              ),
+                            ),
+                          ],
+                        ),
                       );
-                    }
-                    final documentSnapshotList = snapshot.data.docs;
-                    print(documentSnapshotList.length);
-                    return Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      margin: EdgeInsets.only(
-                          left: 0, top: 10, right: 0, bottom: 10),
-                      width: 180,
-                      height: 180,
-                      child: Column(
-                        children: [
-                          SizedBox(height: 40),
-                          // ElevatedButton(
-                          //   onPressed: () {
-                          //     addServo();
-                          //   },
-                          //   child: Text(
-                          //     'เพิ่ม',
-                          //     style: const TextStyle(
-                          //       fontWeight: FontWeight.bold,
-                          //       color: Colors.white,
-                          //       fontSize: 18,
-                          //     ),
-                          //   ),
-                          //   style: ElevatedButton.styleFrom(
-                          //     padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                          //     primary: Color(0xFF061C31),
-                          //   ),
-                          // ),
-                          Text(
-                            "TOTAL",
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.black,
-                            ),
-                          ),
-                          Text(
-                            documentSnapshotList.length.toString(),
-                            style: TextStyle(
-                              fontSize: 50,
-                              color: Colors.red,
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                SizedBox(width: 10),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
+                    },
                   ),
-                  margin:
-                      EdgeInsets.only(left: 0, top: 10, right: 0, bottom: 10),
-                  width: 180,
-                  height: 180,
-                  child: Image.asset(
-                    'assets/images/switch.png',
+                ],
+              ),
+              Row(
+                children: [
+                  SizedBox(width: 10),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    margin:
+                        EdgeInsets.only(left: 0, top: 10, right: 0, bottom: 10),
+                    width: 180,
+                    height: 180,
+                    child: Image.asset(
+                      'assets/images/switch.png',
+                    ),
                   ),
-                ),
-                SizedBox(width: 10),
-                StreamBuilder<QuerySnapshot>(
-                  stream: FirebaseFirestore.instance
-                      .collection('Switch')
-                      .snapshots(),
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return Center(
-                        child: Text("No Task Added"),
+                  SizedBox(width: 10),
+                  StreamBuilder<QuerySnapshot>(
+                    stream: FirebaseFirestore.instance
+                        .collection('Switch')
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: Text("No Task Added"),
+                        );
+                      }
+                      final documentSnapshotList = snapshot.data.docs;
+                      print(documentSnapshotList.length);
+                      return Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        margin: EdgeInsets.only(
+                            left: 0, top: 10, right: 0, bottom: 10),
+                        width: 180,
+                        height: 180,
+                        child: Column(
+                          children: [
+                            SizedBox(height: 40),
+                            // ElevatedButton(
+                            //   onPressed: () {
+                            //     addSwitch();
+                            //   },
+                            //   child: Text(
+                            //     'เพิ่ม',
+                            //     style: const TextStyle(
+                            //       fontWeight: FontWeight.bold,
+                            //       color: Colors.white,
+                            //       fontSize: 18,
+                            //     ),
+                            //   ),
+                            //   style: ElevatedButton.styleFrom(
+                            //     padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                            //     primary: Color(0xFF061C31),
+                            //   ),
+                            // ),
+                            Text(
+                              "TOTAL",
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black,
+                              ),
+                            ),
+                            Text(
+                              documentSnapshotList.length.toString(),
+                              style: TextStyle(
+                                fontSize: 50,
+                                color: Colors.red,
+                              ),
+                            ),
+                          ],
+                        ),
                       );
-                    }
-                    final documentSnapshotList = snapshot.data.docs;
-                    print(documentSnapshotList.length);
-                    return Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      margin: EdgeInsets.only(
-                          left: 0, top: 10, right: 0, bottom: 10),
-                      width: 180,
-                      height: 180,
-                      child: Column(
-                        children: [
-                          SizedBox(height: 40),
-                          // ElevatedButton(
-                          //   onPressed: () {
-                          //     addSwitch();
-                          //   },
-                          //   child: Text(
-                          //     'เพิ่ม',
-                          //     style: const TextStyle(
-                          //       fontWeight: FontWeight.bold,
-                          //       color: Colors.white,
-                          //       fontSize: 18,
-                          //     ),
-                          //   ),
-                          //   style: ElevatedButton.styleFrom(
-                          //     padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                          //     primary: Color(0xFF061C31),
-                          //   ),
-                          // ),
-                          Text(
-                            "TOTAL",
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.black,
-                            ),
-                          ),
-                          Text(
-                            documentSnapshotList.length.toString(),
-                            style: TextStyle(
-                              fontSize: 50,
-                              color: Colors.red,
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                SizedBox(width: 10),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
+                    },
                   ),
-                  margin:
-                      EdgeInsets.only(left: 0, top: 10, right: 0, bottom: 10),
-                  width: 180,
-                  height: 180,
-                  child: Image.asset(
-                    'assets/images/Capacitor.png',
+                ],
+              ),
+              Row(
+                children: [
+                  SizedBox(width: 10),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    margin:
+                        EdgeInsets.only(left: 0, top: 10, right: 0, bottom: 10),
+                    width: 180,
+                    height: 180,
+                    child: Image.asset(
+                      'assets/images/Capacitor.png',
+                    ),
                   ),
-                ),
-                SizedBox(width: 10),
-                StreamBuilder<QuerySnapshot>(
-                  stream: FirebaseFirestore.instance
-                      .collection('Capacitor')
-                      .snapshots(),
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return Center(
-                        child: Text("No Task Added"),
+                  SizedBox(width: 10),
+                  StreamBuilder<QuerySnapshot>(
+                    stream: FirebaseFirestore.instance
+                        .collection('Capacitor')
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: Text("No Task Added"),
+                        );
+                      }
+                      final documentSnapshotList = snapshot.data.docs;
+                      print(documentSnapshotList.length);
+                      return Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        margin: EdgeInsets.only(
+                            left: 0, top: 10, right: 0, bottom: 10),
+                        width: 180,
+                        height: 180,
+                        child: Column(
+                          children: [
+                            SizedBox(height: 40),
+                            // ElevatedButton(
+                            //   onPressed: () {
+                            //     addCapacitor();
+                            //   },
+                            //   child: Text(
+                            //     'เพิ่ม',
+                            //     style: const TextStyle(
+                            //       fontWeight: FontWeight.bold,
+                            //       color: Colors.white,
+                            //       fontSize: 18,
+                            //     ),
+                            //   ),
+                            //   style: ElevatedButton.styleFrom(
+                            //     padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                            //     primary: Color(0xFF061C31),
+                            //   ),
+                            // ),
+                            Text(
+                              "TOTAL",
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black,
+                              ),
+                            ),
+                            Text(
+                              documentSnapshotList.length.toString(),
+                              style: TextStyle(
+                                fontSize: 50,
+                                color: Colors.red,
+                              ),
+                            ),
+                          ],
+                        ),
                       );
-                    }
-                    final documentSnapshotList = snapshot.data.docs;
-                    print(documentSnapshotList.length);
-                    return Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      margin: EdgeInsets.only(
-                          left: 0, top: 10, right: 0, bottom: 10),
-                      width: 180,
-                      height: 180,
-                      child: Column(
-                        children: [
-                          SizedBox(height: 40),
-                          // ElevatedButton(
-                          //   onPressed: () {
-                          //     addCapacitor();
-                          //   },
-                          //   child: Text(
-                          //     'เพิ่ม',
-                          //     style: const TextStyle(
-                          //       fontWeight: FontWeight.bold,
-                          //       color: Colors.white,
-                          //       fontSize: 18,
-                          //     ),
-                          //   ),
-                          //   style: ElevatedButton.styleFrom(
-                          //     padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                          //     primary: Color(0xFF061C31),
-                          //   ),
-                          // ),
-                          Text(
-                            "TOTAL",
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.black,
-                            ),
-                          ),
-                          Text(
-                            documentSnapshotList.length.toString(),
-                            style: TextStyle(
-                              fontSize: 50,
-                              color: Colors.red,
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
-              ],
-            ),
-          ],
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

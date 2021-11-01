@@ -58,279 +58,280 @@ class _Manual2State extends State<Manual2> {
     return Scaffold(
       appBar: AppBar(title: Text("Arm Control")),
       body: SafeArea(
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Column(
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(height: 30),
-                  Text(
-                    "SETTING AXIS",
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: bgAppbar,
-                      fontSize: 30,
+        child: Center(
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Column(
+                  children: [
+                    Text(
+                      "SETTING AXIS",
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: bgAppbar,
+                        fontSize: 30,
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 20),
-                  Row(
-                    children: [
-                      SizedBox(width: 20),
-                      Text(
-                        'ข้อต่อที่ 0',
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.blue[900],
+                    SizedBox(height: 20),
+                    Row(
+                      children: [
+                        SizedBox(width: 20),
+                        Text(
+                          'ข้อต่อที่ 0',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.blue[900],
+                          ),
                         ),
-                      ),
-                      Slider(
-                        value: currentSliderValue0,
-                        min: 0,
-                        max: 180,
-                        divisions: 180,
-                        label: currentSliderValue0.round().toString(),
-                        onChanged: (double value) {
-                          setState(() {
-                            currentSliderValue0 = value;
-                          });
-                          upvalue0();
-                        },
-                      ),
-                      Text(
-                        currentSliderValue0.round().toString(),
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.blue[900],
+                        Slider(
+                          value: currentSliderValue0,
+                          min: 0,
+                          max: 180,
+                          divisions: 180,
+                          label: currentSliderValue0.round().toString(),
+                          onChanged: (double value) {
+                            setState(() {
+                              currentSliderValue0 = value;
+                            });
+                            upvalue0();
+                          },
                         ),
-                      ),
-                      SizedBox(width: 10),
-                      Text(
-                        'องศา',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.blue[900],
+                        Text(
+                          currentSliderValue0.round().toString(),
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.blue[900],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  ////////////////////////////////////////////////////////////
-                  SizedBox(height: 20),
-                  Row(
-                    children: [
-                      SizedBox(width: 20),
-                      Text(
-                        'ข้อต่อที่ 1',
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.blue[900],
+                        SizedBox(width: 10),
+                        Text(
+                          'องศา',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.blue[900],
+                          ),
                         ),
-                      ),
-                      Slider(
-                        value: currentSliderValue1,
-                        min: 0,
-                        max: 180,
-                        divisions: 180,
-                        label: currentSliderValue1.round().toString(),
-                        onChanged: (double value) {
-                          setState(() {
-                            currentSliderValue1 = value;
-                          });
-                          upvalue1();
-                        },
-                      ),
-                      Text(
-                        currentSliderValue1.round().toString(),
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.blue[900],
+                      ],
+                    ),
+                    ////////////////////////////////////////////////////////////
+                    SizedBox(height: 20),
+                    Row(
+                      children: [
+                        SizedBox(width: 20),
+                        Text(
+                          'ข้อต่อที่ 1',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.blue[900],
+                          ),
                         ),
-                      ),
-                      SizedBox(width: 10),
-                      Text(
-                        'องศา',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.blue[900],
+                        Slider(
+                          value: currentSliderValue1,
+                          min: 0,
+                          max: 180,
+                          divisions: 180,
+                          label: currentSliderValue1.round().toString(),
+                          onChanged: (double value) {
+                            setState(() {
+                              currentSliderValue1 = value;
+                            });
+                            upvalue1();
+                          },
                         ),
-                      ),
-                    ],
-                  ),
-                  ////////////////////////////////////////////////////////////
-                  SizedBox(height: 20),
-                  Row(
-                    children: [
-                      SizedBox(width: 20),
-                      Text(
-                        'ข้อต่อที่ 2',
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.blue[900],
+                        Text(
+                          currentSliderValue1.round().toString(),
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.blue[900],
+                          ),
                         ),
-                      ),
-                      Slider(
-                        value: currentSliderValue2,
-                        min: 0,
-                        max: 180,
-                        divisions: 180,
-                        label: currentSliderValue2.round().toString(),
-                        onChanged: (double value) {
-                          setState(() {
-                            currentSliderValue2 = value;
-                          });
-                          upvalue2();
-                        },
-                      ),
-                      Text(
-                        currentSliderValue2.round().toString(),
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.blue[900],
+                        SizedBox(width: 10),
+                        Text(
+                          'องศา',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.blue[900],
+                          ),
                         ),
-                      ),
-                      SizedBox(width: 10),
-                      Text(
-                        'องศา',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.blue[900],
+                      ],
+                    ),
+                    ////////////////////////////////////////////////////////////
+                    SizedBox(height: 20),
+                    Row(
+                      children: [
+                        SizedBox(width: 20),
+                        Text(
+                          'ข้อต่อที่ 2',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.blue[900],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  ////////////////////////////////////////////////////////////
-                  SizedBox(height: 20),
-                  Row(
-                    children: [
-                      SizedBox(width: 20),
-                      Text(
-                        'ข้อต่อที่ 3',
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.blue[900],
+                        Slider(
+                          value: currentSliderValue2,
+                          min: 0,
+                          max: 180,
+                          divisions: 180,
+                          label: currentSliderValue2.round().toString(),
+                          onChanged: (double value) {
+                            setState(() {
+                              currentSliderValue2 = value;
+                            });
+                            upvalue2();
+                          },
                         ),
-                      ),
-                      Slider(
-                        value: currentSliderValue3,
-                        min: 0,
-                        max: 180,
-                        divisions: 180,
-                        label: currentSliderValue3.round().toString(),
-                        onChanged: (double value) {
-                          setState(() {
-                            currentSliderValue3 = value;
-                          });
-                          upvalue3();
-                        },
-                      ),
-                      Text(
-                        currentSliderValue3.round().toString(),
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.blue[900],
+                        Text(
+                          currentSliderValue2.round().toString(),
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.blue[900],
+                          ),
                         ),
-                      ),
-                      SizedBox(width: 10),
-                      Text(
-                        'องศา',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.blue[900],
+                        SizedBox(width: 10),
+                        Text(
+                          'องศา',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.blue[900],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  ////////////////////////////////////////////////////////////
-                  SizedBox(height: 20),
-                  Row(
-                    children: [
-                      SizedBox(width: 20),
-                      Text(
-                        'ข้อต่อที่ 4',
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.blue[900],
+                      ],
+                    ),
+                    ////////////////////////////////////////////////////////////
+                    SizedBox(height: 20),
+                    Row(
+                      children: [
+                        SizedBox(width: 20),
+                        Text(
+                          'ข้อต่อที่ 3',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.blue[900],
+                          ),
                         ),
-                      ),
-                      Slider(
-                        value: currentSliderValue4,
-                        min: 0,
-                        max: 180,
-                        divisions: 180,
-                        label: currentSliderValue4.round().toString(),
-                        onChanged: (double value) {
-                          setState(() {
-                            currentSliderValue4 = value;
-                          });
-                          upvalue4();
-                        },
-                      ),
-                      Text(
-                        currentSliderValue4.round().toString(),
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.blue[900],
+                        Slider(
+                          value: currentSliderValue3,
+                          min: 0,
+                          max: 180,
+                          divisions: 180,
+                          label: currentSliderValue3.round().toString(),
+                          onChanged: (double value) {
+                            setState(() {
+                              currentSliderValue3 = value;
+                            });
+                            upvalue3();
+                          },
                         ),
-                      ),
-                      SizedBox(width: 10),
-                      Text(
-                        'องศา',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.blue[900],
+                        Text(
+                          currentSliderValue3.round().toString(),
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.blue[900],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  ////////////////////////////////////////////////////////////
-                  SizedBox(height: 20),
-                  Row(
-                    children: [
-                      SizedBox(width: 20),
-                      Text(
-                        'ข้อต่อที่ 5',
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.blue[900],
+                        SizedBox(width: 10),
+                        Text(
+                          'องศา',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.blue[900],
+                          ),
                         ),
-                      ),
-                      Slider(
-                        value: currentSliderValue5,
-                        min: 0,
-                        max: 180,
-                        divisions: 180,
-                        label: currentSliderValue5.round().toString(),
-                        onChanged: (double value) {
-                          setState(() {
-                            currentSliderValue5 = value;
-                          });
-                          upvalue5();
-                        },
-                      ),
-                      Text(
-                        currentSliderValue5.round().toString(),
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.blue[900],
+                      ],
+                    ),
+                    ////////////////////////////////////////////////////////////
+                    SizedBox(height: 20),
+                    Row(
+                      children: [
+                        SizedBox(width: 20),
+                        Text(
+                          'ข้อต่อที่ 4',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.blue[900],
+                          ),
                         ),
-                      ),
-                      SizedBox(width: 10),
-                      Text(
-                        'องศา',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.blue[900],
+                        Slider(
+                          value: currentSliderValue4,
+                          min: 0,
+                          max: 180,
+                          divisions: 180,
+                          label: currentSliderValue4.round().toString(),
+                          onChanged: (double value) {
+                            setState(() {
+                              currentSliderValue4 = value;
+                            });
+                            upvalue4();
+                          },
                         ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
+                        Text(
+                          currentSliderValue4.round().toString(),
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.blue[900],
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Text(
+                          'องศา',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.blue[900],
+                          ),
+                        ),
+                      ],
+                    ),
+                    ////////////////////////////////////////////////////////////
+                    SizedBox(height: 20),
+                    Row(
+                      children: [
+                        SizedBox(width: 20),
+                        Text(
+                          'ข้อต่อที่ 5',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.blue[900],
+                          ),
+                        ),
+                        Slider(
+                          value: currentSliderValue5,
+                          min: 0,
+                          max: 180,
+                          divisions: 180,
+                          label: currentSliderValue5.round().toString(),
+                          onChanged: (double value) {
+                            setState(() {
+                              currentSliderValue5 = value;
+                            });
+                            upvalue5();
+                          },
+                        ),
+                        Text(
+                          currentSliderValue5.round().toString(),
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.blue[900],
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Text(
+                          'องศา',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.blue[900],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

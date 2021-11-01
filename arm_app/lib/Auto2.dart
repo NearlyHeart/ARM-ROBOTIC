@@ -1,5 +1,6 @@
 // @dart=2.9
 import 'package:arm_app/Constants.dart';
+import 'package:arm_app/Dashboard/BoardScreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -21,31 +22,22 @@ class Auto2 extends StatefulWidget {
 class _Auto2State extends State<Auto2> {
   int selectedServo;
   final CH = Check();
-  bool blue, green, yellow, red;
-  bool Cylinder_Blue, Cylinder_Green, Cylinder_Yellow, Cylinder_Red;
-  bool Triangle_Blue, Triangle_Green, Triangle_Yellow, Triangle_Red;
-  bool Electronic_Servo, Electronic_Capacitor, Electronic_Switch;
+  bool blue = false, green = false, yellow = false, red = false;
+  bool Cylinder_Blue = false,
+      Cylinder_Green = false,
+      Cylinder_Yellow = false,
+      Cylinder_Red = false;
+  bool Triangle_Blue = false,
+      Triangle_Green = false,
+      Triangle_Yellow = false,
+      Triangle_Red = false;
+  bool Electronic_Servo = false,
+      Electronic_Capacitor = false,
+      Electronic_Switch = false;
+  bool CheckBbutton;
 
   @override
   Widget build(BuildContext context) {
-    resetCube_Blue();
-    resetCube_Green();
-    resetCube_Yellow();
-    resetCube_Red();
-    ////////////////////////////////////////////////////////////////
-    resetCylinder_Blue();
-    resetCylinder_Green();
-    resetCylinder_Yellow();
-    resetCylinder_Red();
-    ////////////////////////////////////////////////////////////////
-    resetTriangle_Blue();
-    resetTriangle_Green();
-    resetTriangle_Yellow();
-    resetTriangle_Red();
-    ////////////////////////////////////////////////////////////////
-    resetElectronic_Servo();
-    resetElectronic_Capacitor();
-    resetElectronic_Switch();
     return Scaffold(
       appBar: AppBar(
         title: Text("Auto"),
@@ -59,29 +51,7 @@ class _Auto2State extends State<Auto2> {
             Spacer(),
             ElevatedButton(
               onPressed: () {
-                resetCube_Blue();
-                resetCube_Green();
-                resetCube_Yellow();
-                resetCube_Red();
-                ////////////////////////////////////////////////////////////////
-                resetCylinder_Blue();
-                resetCylinder_Green();
-                resetCylinder_Yellow();
-                resetCylinder_Red();
-                ////////////////////////////////////////////////////////////////
-                resetTriangle_Blue();
-                resetTriangle_Green();
-                resetTriangle_Yellow();
-                resetTriangle_Red();
-                ////////////////////////////////////////////////////////////////
-                resetElectronic_Servo();
-                resetElectronic_Capacitor();
-                resetElectronic_Switch();
-                // Navigator.pushAndRemoveUntil(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => Auto2()),
-                //   (Route<dynamic> route) => false,
-                // );
+                reset();
                 // Navigator.pop(context);
                 Navigator.of(context).pushReplacement(
                     MaterialPageRoute(builder: (context) => Auto2()));
@@ -97,24 +67,141 @@ class _Auto2State extends State<Auto2> {
             Spacer(),
             ElevatedButton(
               onPressed: () {
-                setCube_Green(green);
-                setCube_Blue(blue);
-                setCube_Yellow(yellow);
-                setCube_Red(red);
-                ///////////////////////////////////////////////////////////////
-                setCylinder_Green(Cylinder_Green);
-                setCylinder_Blue(Cylinder_Blue);
-                setCylinder_Yellow(Cylinder_Yellow);
-                setCylinder_Red(Cylinder_Red);
-                ///////////////////////////////////////////////////////////////
-                setTriangle_Green(Triangle_Green);
-                setTriangle_Blue(Triangle_Blue);
-                setTriangle_Yellow(Triangle_Yellow);
-                setTriangle_Red(Triangle_Red);
-                ////////////////////////////////////////////////////////////////
-                setElectronic_Servo(Electronic_Servo);
-                setElectronic_Capacitor(Electronic_Capacitor);
-                setElectronic_Switch(Electronic_Switch);
+                // setCube_Green(green);
+                // setCube_Blue(blue);
+                // setCube_Yellow(yellow);
+                // setCube_Red(red);
+                // ///////////////////////////////////////////////////////////////
+                // setCylinder_Green(Cylinder_Green);
+                // setCylinder_Blue(Cylinder_Blue);
+                // setCylinder_Yellow(Cylinder_Yellow);
+                // setCylinder_Red(Cylinder_Red);
+                // ///////////////////////////////////////////////////////////////
+                // setTriangle_Green(Triangle_Green);
+                // setTriangle_Blue(Triangle_Blue);
+                // setTriangle_Yellow(Triangle_Yellow);
+                // setTriangle_Red(Triangle_Red);
+                // ////////////////////////////////////////////////////////////////
+                // setElectronic_Servo(Electronic_Servo);
+                // setElectronic_Capacitor(Electronic_Capacitor);
+                // setElectronic_Switch(Electronic_Switch);
+                showDialog(
+                    context: context,
+                    builder: (BuildContext conttext) {
+                      return SingleChildScrollView(
+                        child: AlertDialog(
+                          backgroundColor: bgAppbar,
+                          title: Container(
+                            child: Column(
+                              children: <Widget>[
+                                if (red != true &&
+                                    blue != true &&
+                                    yellow != true &&
+                                    green != true &&
+                                    Cylinder_Green != true &&
+                                    Cylinder_Blue != true &&
+                                    Cylinder_Yellow != true &&
+                                    Cylinder_Red != true &&
+                                    Triangle_Green != true &&
+                                    Triangle_Blue != true &&
+                                    Triangle_Yellow != true &&
+                                    Triangle_Red != true &&
+                                    Electronic_Servo != true &&
+                                    Electronic_Capacitor != true &&
+                                    Electronic_Switch != true)
+                                  Text('**กรุณาเลือกรายการวัตถุ**')
+                                else
+                                  Text('==== รายที่เลือก ===='),
+                                if (Electronic_Capacitor != false)
+                                  Text('Capacitor'),
+                                if (Electronic_Switch != false)
+                                  Text('Capacitor'),
+                                Text('=================='),
+                                if (blue != false) Text('Blue Cube '),
+                                if (red != false) Text('Red Cube '),
+                                if (green != false) Text('Green Cube '),
+                                if (yellow != false) Text('Yellow Cube '),
+                                //////////////////////////////////////////////////
+                                Text('=================='),
+                                if (Cylinder_Green != false)
+                                  Text('Green Cylinder '),
+                                if (Cylinder_Blue != false)
+                                  Text('Blue Cylinder '),
+                                if (Cylinder_Yellow != false)
+                                  Text('Yellow Cylinder '),
+                                if (Cylinder_Red != false)
+                                  Text('Red Cylinder '),
+                                //////////////////////////////////////////////////
+                                Text('=================='),
+                                if (Triangle_Green != false)
+                                  Text('Green Triangle '),
+                                if (Triangle_Blue != false)
+                                  Text('Blue Triangle '),
+                                if (Triangle_Yellow != false)
+                                  Text('Yellow Triangle '),
+                                if (Triangle_Red != false)
+                                  Text('Red Triangle '),
+                                Text('=================='),
+                              ],
+                            ),
+                          ),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                                Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                        builder: (context) => Auto2()));
+                              },
+                              child: Text('ยกเลิก'),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                if (red != true &&
+                                    blue != true &&
+                                    yellow != true &&
+                                    green != true &&
+                                    Cylinder_Green != true &&
+                                    Cylinder_Blue != true &&
+                                    Cylinder_Yellow != true &&
+                                    Cylinder_Red != true &&
+                                    Triangle_Green != true &&
+                                    Triangle_Blue != true &&
+                                    Triangle_Yellow != true &&
+                                    Triangle_Red != true &&
+                                    Electronic_Servo != true &&
+                                    Electronic_Capacitor != true &&
+                                    Electronic_Switch != true)
+                                  Navigator.pop(context);
+                                else
+                                  setCube_Green(green);
+                                setCube_Blue(blue);
+                                setCube_Yellow(yellow);
+                                setCube_Red(red);
+                                ///////////////////////////////////////////////////////////////
+                                setCylinder_Green(Cylinder_Green);
+                                setCylinder_Blue(Cylinder_Blue);
+                                setCylinder_Yellow(Cylinder_Yellow);
+                                setCylinder_Red(Cylinder_Red);
+                                ///////////////////////////////////////////////////////////////
+                                setTriangle_Green(Triangle_Green);
+                                setTriangle_Blue(Triangle_Blue);
+                                setTriangle_Yellow(Triangle_Yellow);
+                                setTriangle_Red(Triangle_Red);
+                                ////////////////////////////////////////////////////////////////
+                                setElectronic_Servo(Electronic_Servo);
+                                setElectronic_Capacitor(Electronic_Capacitor);
+                                setElectronic_Switch(Electronic_Switch);
+                                Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                        builder: (context) => Board()));
+                              },
+                              child: Text('ยืนยัน'),
+                            ),
+                          ],
+                        ),
+                      );
+                    });
               },
               child: Text(
                 "START",
@@ -129,942 +216,967 @@ class _Auto2State extends State<Auto2> {
         )),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white24,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        margin: EdgeInsets.only(
-                            left: 10, top: 10, right: 10, bottom: 10),
-                        width: 370,
-                        height: 250,
-                        child: Column(
-                          children: [
-                            Row(
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  width: 370,
-                                  height: 80,
-                                  child: Row(
-                                    children: [
-                                      SizedBox(width: 90),
-                                      Text(
-                                        'Electronic',
-                                        style: const TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: bgAppbar,
-                                          fontSize: 40,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white24,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          margin: EdgeInsets.only(
+                              left: 10, top: 10, right: 10, bottom: 10),
+                          width: 370,
+                          height: 250,
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    width: 370,
+                                    height: 80,
+                                    child: Row(
+                                      children: [
+                                        SizedBox(width: 90),
+                                        Text(
+                                          'Electronic',
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: bgAppbar,
+                                            fontSize: 40,
+                                          ),
                                         ),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                              Spacer(),
+                              Row(
+                                children: [
+                                  SizedBox(width: 20),
+                                  Column(
+                                    children: [
+                                      SizedBox(height: 10),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        width: 100,
+                                        height: 100,
+                                        child: Image.asset(
+                                          'assets/images/servo.png',
+                                          height: 70,
+                                          width: 50,
+                                        ),
+                                      ),
+                                      StreamBuilder(
+                                        stream: FirebaseFirestore.instance
+                                            .collection('Select_Electronic')
+                                            .doc(
+                                                'Electronic_Servo') //ID OF DOCUMENT
+                                            .snapshots(),
+                                        builder: (context, snapshot) {
+                                          if (!snapshot.hasData) {
+                                            return new CircularProgressIndicator();
+                                          }
+                                          return Container(
+                                            child: Column(
+                                              children: [
+                                                Checkbox(
+                                                  activeColor: bgAppbar,
+                                                  value:
+                                                      CH.valueElectronic_Servo,
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      CH.valueElectronic_Servo =
+                                                          !CH.valueElectronic_Servo;
+                                                    });
+                                                    return Electronic_Servo = CH
+                                                        .valueElectronic_Servo;
+                                                  },
+                                                )
+                                              ],
+                                            ),
+                                          );
+                                        },
                                       ),
                                     ],
                                   ),
-                                )
-                              ],
-                            ),
-                            Spacer(),
-                            Row(
-                              children: [
-                                SizedBox(width: 20),
-                                Column(
-                                  children: [
-                                    SizedBox(height: 10),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      width: 100,
-                                      height: 100,
-                                      child: Image.asset(
-                                        'assets/images/servo.png',
-                                        height: 70,
-                                        width: 50,
-                                      ),
-                                    ),
-                                    StreamBuilder(
-                                      stream: FirebaseFirestore.instance
-                                          .collection('Select_Electronic')
-                                          .doc(
-                                              'Electronic_Servo') //ID OF DOCUMENT
-                                          .snapshots(),
-                                      builder: (context, snapshot) {
-                                        if (!snapshot.hasData) {
-                                          return new CircularProgressIndicator();
-                                        }
-                                        return Container(
-                                          child: Column(
-                                            children: [
-                                              Checkbox(
-                                                activeColor: bgAppbar,
-                                                value: CH.valueElectronic_Servo,
-                                                onChanged: (value) {
-                                                  setState(() {
-                                                    CH.valueElectronic_Servo =
-                                                        !CH.valueElectronic_Servo;
-                                                  });
-                                                  return Electronic_Servo =
-                                                      CH.valueElectronic_Servo;
-                                                },
-                                              )
-                                            ],
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  ],
-                                ),
-                                //////////////////////////////////////////////////
-                                Spacer(),
-                                Column(
-                                  children: [
-                                    SizedBox(height: 10),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      width: 100,
-                                      height: 100,
-                                      child: Image.asset(
-                                        'assets/images/Capacitor.png',
-                                        height: 90,
-                                        width: 90,
-                                      ),
-                                    ),
-                                    StreamBuilder(
-                                      stream: FirebaseFirestore.instance
-                                          .collection('Select_Electronic')
-                                          .doc(
-                                              'Electronic_Capacitor') //ID OF DOCUMENT
-                                          .snapshots(),
-                                      builder: (context, snapshot) {
-                                        if (!snapshot.hasData) {
-                                          return new CircularProgressIndicator();
-                                        }
-                                        return Container(
-                                          child: Column(
-                                            children: [
-                                              Checkbox(
-                                                activeColor: bgAppbar,
-                                                value: CH
-                                                    .valueElectronic_Capacitor,
-                                                onChanged: (value) {
-                                                  setState(() {
-                                                    CH.valueElectronic_Capacitor =
-                                                        !CH.valueElectronic_Capacitor;
-                                                  });
-                                                  return Electronic_Capacitor =
-                                                      CH.valueElectronic_Capacitor;
-                                                },
-                                              )
-                                            ],
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  ],
-                                ),
-                                Spacer(),
-                                Column(
-                                  children: [
-                                    SizedBox(height: 10),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      width: 100,
-                                      height: 100,
-                                      child: Image.asset(
-                                        'assets/images/switch.png',
-                                        height: 70,
-                                        width: 50,
-                                      ),
-                                    ),
-                                    StreamBuilder(
-                                      stream: FirebaseFirestore.instance
-                                          .collection('Select_Electronic')
-                                          .doc(
-                                              'Electronic_Switch') //ID OF DOCUMENT
-                                          .snapshots(),
-                                      builder: (context, snapshot) {
-                                        if (!snapshot.hasData) {
-                                          return new CircularProgressIndicator();
-                                        }
-                                        return Container(
-                                          child: Column(
-                                            children: [
-                                              Checkbox(
-                                                activeColor: bgAppbar,
-                                                value:
-                                                    CH.valueElectronic_Switch,
-                                                onChanged: (value) {
-                                                  setState(() {
-                                                    CH.valueElectronic_Switch =
-                                                        !CH.valueElectronic_Switch;
-                                                  });
-                                                  return Electronic_Switch =
-                                                      CH.valueElectronic_Switch;
-                                                },
-                                              )
-                                            ],
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  ],
-                                ),
-
-                                SizedBox(width: 20),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white24,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        margin: EdgeInsets.only(
-                            left: 10, top: 10, right: 10, bottom: 10),
-                        width: 370,
-                        height: 210,
-                        child: Column(
-                          children: [
-                            Row(
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  width: 370,
-                                  height: 100,
-                                  child: Row(
+                                  //////////////////////////////////////////////////
+                                  Spacer(),
+                                  Column(
                                     children: [
-                                      SizedBox(width: 40),
-                                      Image.asset(
-                                        'assets/images/Cube.png',
-                                      ),
-                                      Text(
-                                        'Cube',
-                                        style: const TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: bgAppbar,
-                                          fontSize: 40,
+                                      SizedBox(height: 10),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
                                         ),
+                                        width: 100,
+                                        height: 100,
+                                        child: Image.asset(
+                                          'assets/images/Capacitor.png',
+                                          height: 90,
+                                          width: 90,
+                                        ),
+                                      ),
+                                      StreamBuilder(
+                                        stream: FirebaseFirestore.instance
+                                            .collection('Select_Electronic')
+                                            .doc(
+                                                'Electronic_Capacitor') //ID OF DOCUMENT
+                                            .snapshots(),
+                                        builder: (context, snapshot) {
+                                          if (!snapshot.hasData) {
+                                            return new CircularProgressIndicator();
+                                          }
+                                          return Container(
+                                            child: Column(
+                                              children: [
+                                                Checkbox(
+                                                  activeColor: bgAppbar,
+                                                  value: CH
+                                                      .valueElectronic_Capacitor,
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      CH.valueElectronic_Capacitor =
+                                                          !CH.valueElectronic_Capacitor;
+                                                    });
+                                                    return Electronic_Capacitor =
+                                                        CH.valueElectronic_Capacitor;
+                                                  },
+                                                )
+                                              ],
+                                            ),
+                                          );
+                                        },
                                       ),
                                     ],
                                   ),
-                                )
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                SizedBox(width: 20),
-                                Column(
-                                  children: [
-                                    SizedBox(height: 10),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.blue.shade900,
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      width: 70,
-                                      height: 50,
-                                    ),
-                                    StreamBuilder(
-                                      stream: FirebaseFirestore.instance
-                                          .collection('Select_Cube')
-                                          .doc('Cube_Blue') //ID OF DOCUMENT
-                                          .snapshots(),
-                                      builder: (context, snapshot) {
-                                        if (!snapshot.hasData) {
-                                          return new CircularProgressIndicator();
-                                        }
-                                        var document = snapshot.data;
-                                        bool total = document['Blue'];
-
-                                        return Container(
-                                          child: Column(
-                                            children: [
-                                              Checkbox(
-                                                activeColor: bgAppbar,
-                                                value: CH.valueCube_blue,
-                                                onChanged: (value) {
-                                                  setState(() {
-                                                    CH.valueCube_blue =
-                                                        !CH.valueCube_blue;
-                                                  });
-                                                  return blue =
-                                                      CH.valueCube_blue;
-                                                },
-                                              )
-                                            ],
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  ],
-                                ),
-                                //////////////////////////////////////////////////
-                                Spacer(),
-                                Column(
-                                  children: [
-                                    SizedBox(height: 10),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.green.shade900,
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      width: 70,
-                                      height: 50,
-                                    ),
-                                    StreamBuilder(
-                                      stream: FirebaseFirestore.instance
-                                          .collection('Select_Cube')
-                                          .doc('Cube_Green') //ID OF DOCUMENT
-                                          .snapshots(),
-                                      builder: (context, snapshot) {
-                                        if (!snapshot.hasData) {
-                                          return new CircularProgressIndicator();
-                                        }
-                                        var document = snapshot.data;
-                                        bool total = document['Green'];
-                                        return Container(
-                                          // width: 160,
-                                          // height: 100,
-                                          child: Column(
-                                            children: [
-                                              Checkbox(
-                                                activeColor: bgAppbar,
-                                                value: CH.valueCube_green,
-                                                onChanged: (value) {
-                                                  setState(() {
-                                                    CH.valueCube_green =
-                                                        !CH.valueCube_green;
-                                                  });
-                                                  return green =
-                                                      CH.valueCube_green;
-                                                },
-                                              )
-                                            ],
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  ],
-                                ),
-                                Spacer(),
-                                Column(
-                                  children: [
-                                    SizedBox(height: 10),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.yellow.shade300,
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      width: 70,
-                                      height: 50,
-                                    ),
-                                    StreamBuilder(
-                                      stream: FirebaseFirestore.instance
-                                          .collection('Select_Cube')
-                                          .doc('Cube_Yellow') //ID OF DOCUMENT
-                                          .snapshots(),
-                                      builder: (context, snapshot) {
-                                        if (!snapshot.hasData) {
-                                          return new CircularProgressIndicator();
-                                        }
-                                        var document = snapshot.data;
-                                        bool total = document['Yellow'];
-                                        return Container(
-                                          child: Column(
-                                            children: [
-                                              Checkbox(
-                                                activeColor: bgAppbar,
-                                                value: CH.valueCube_yellow,
-                                                onChanged: (value) {
-                                                  setState(() {
-                                                    CH.valueCube_yellow =
-                                                        !CH.valueCube_yellow;
-                                                  });
-                                                  return yellow =
-                                                      CH.valueCube_yellow;
-                                                },
-                                              )
-                                            ],
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  ],
-                                ),
-                                Spacer(),
-                                Column(
-                                  children: [
-                                    SizedBox(height: 10),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.red.shade900,
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      width: 70,
-                                      height: 50,
-                                    ),
-                                    StreamBuilder(
-                                      stream: FirebaseFirestore.instance
-                                          .collection('Select_Cube')
-                                          .doc('Cube_Red') //ID OF DOCUMENT
-                                          .snapshots(),
-                                      builder: (context, snapshot) {
-                                        if (!snapshot.hasData) {
-                                          return new CircularProgressIndicator();
-                                        }
-                                        var document = snapshot.data;
-                                        bool total = document['Red'];
-                                        return Container(
-                                          child: Column(
-                                            children: [
-                                              Checkbox(
-                                                activeColor: bgAppbar,
-                                                value: CH.valueCube_red,
-                                                onChanged: (value) {
-                                                  setState(() {
-                                                    CH.valueCube_red =
-                                                        !CH.valueCube_red;
-                                                  });
-                                                  return red = CH.valueCube_red;
-                                                },
-                                              )
-                                            ],
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(width: 20),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white24,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        margin: EdgeInsets.only(
-                            left: 10, top: 10, right: 10, bottom: 10),
-                        width: 370,
-                        height: 210,
-                        child: Column(
-                          children: [
-                            Row(
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  width: 370,
-                                  height: 100,
-                                  child: Row(
+                                  Spacer(),
+                                  Column(
                                     children: [
-                                      SizedBox(width: 40),
-                                      Image.asset(
-                                        'assets/images/Cylinder.png',
-                                      ),
-                                      Text(
-                                        'Cylinder',
-                                        style: const TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: bgAppbar,
-                                          fontSize: 40,
+                                      SizedBox(height: 10),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
                                         ),
+                                        width: 100,
+                                        height: 100,
+                                        child: Image.asset(
+                                          'assets/images/switch.png',
+                                          height: 70,
+                                          width: 50,
+                                        ),
+                                      ),
+                                      StreamBuilder(
+                                        stream: FirebaseFirestore.instance
+                                            .collection('Select_Electronic')
+                                            .doc(
+                                                'Electronic_Switch') //ID OF DOCUMENT
+                                            .snapshots(),
+                                        builder: (context, snapshot) {
+                                          if (!snapshot.hasData) {
+                                            return new CircularProgressIndicator();
+                                          }
+                                          return Container(
+                                            child: Column(
+                                              children: [
+                                                Checkbox(
+                                                  activeColor: bgAppbar,
+                                                  value:
+                                                      CH.valueElectronic_Switch,
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      CH.valueElectronic_Switch =
+                                                          !CH.valueElectronic_Switch;
+                                                    });
+                                                    return Electronic_Switch = CH
+                                                        .valueElectronic_Switch;
+                                                  },
+                                                )
+                                              ],
+                                            ),
+                                          );
+                                        },
                                       ),
                                     ],
                                   ),
-                                )
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                SizedBox(width: 20),
-                                Column(
-                                  children: [
-                                    SizedBox(height: 10),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.blue.shade900,
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      width: 70,
-                                      height: 50,
-                                    ),
-                                    StreamBuilder(
-                                      stream: FirebaseFirestore.instance
-                                          .collection('Select_Cylinder')
-                                          .doc('Cylinder_Blue') //ID OF DOCUMENT
-                                          .snapshots(),
-                                      builder: (context, snapshot) {
-                                        if (!snapshot.hasData) {
-                                          return new CircularProgressIndicator();
-                                        }
-                                        var document = snapshot.data;
-                                        bool total = document['Blue'];
 
-                                        return Container(
-                                          child: Column(
-                                            children: [
-                                              Checkbox(
-                                                activeColor: bgAppbar,
-                                                value: CH.valueCylinder_blue,
-                                                onChanged: (value) {
-                                                  setState(() {
-                                                    CH.valueCylinder_blue =
-                                                        !CH.valueCylinder_blue;
-                                                  });
-                                                  return Cylinder_Blue =
-                                                      CH.valueCylinder_blue;
-                                                },
-                                              )
-                                            ],
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  ],
-                                ),
-                                //////////////////////////////////////////////////
-                                Spacer(),
-                                Column(
-                                  children: [
-                                    SizedBox(height: 10),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.green.shade900,
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      width: 70,
-                                      height: 50,
-                                    ),
-                                    StreamBuilder(
-                                      stream: FirebaseFirestore.instance
-                                          .collection('Select_Cylinder')
-                                          .doc(
-                                              'Cylinder_Green') //ID OF DOCUMENT
-                                          .snapshots(),
-                                      builder: (context, snapshot) {
-                                        if (!snapshot.hasData) {
-                                          return new CircularProgressIndicator();
-                                        }
-                                        var document = snapshot.data;
-                                        bool total = document['Green'];
-                                        return Container(
-                                          // width: 160,
-                                          // height: 100,
-                                          child: Column(
-                                            children: [
-                                              Checkbox(
-                                                activeColor: bgAppbar,
-                                                value: CH.valueCylinder_green,
-                                                onChanged: (value) {
-                                                  setState(() {
-                                                    CH.valueCylinder_green =
-                                                        !CH.valueCylinder_green;
-                                                  });
-                                                  return Cylinder_Green =
-                                                      CH.valueCylinder_green;
-                                                },
-                                              )
-                                            ],
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  ],
-                                ),
-                                Spacer(),
-                                Column(
-                                  children: [
-                                    SizedBox(height: 10),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.yellow.shade300,
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      width: 70,
-                                      height: 50,
-                                    ),
-                                    StreamBuilder(
-                                      stream: FirebaseFirestore.instance
-                                          .collection('Select_Cylinder')
-                                          .doc(
-                                              'Cylinder_Yellow') //ID OF DOCUMENT
-                                          .snapshots(),
-                                      builder: (context, snapshot) {
-                                        if (!snapshot.hasData) {
-                                          return new CircularProgressIndicator();
-                                        }
-                                        var document = snapshot.data;
-                                        bool total = document['Yellow'];
-                                        return Container(
-                                          child: Column(
-                                            children: [
-                                              Checkbox(
-                                                activeColor: bgAppbar,
-                                                value: CH.valueCylinder_yellow,
-                                                onChanged: (value) {
-                                                  setState(() {
-                                                    CH.valueCylinder_yellow =
-                                                        !CH.valueCylinder_yellow;
-                                                  });
-                                                  return Cylinder_Yellow =
-                                                      CH.valueCylinder_yellow;
-                                                },
-                                              )
-                                            ],
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  ],
-                                ),
-                                Spacer(),
-                                Column(
-                                  children: [
-                                    SizedBox(height: 10),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.red.shade900,
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      width: 70,
-                                      height: 50,
-                                    ),
-                                    StreamBuilder(
-                                      stream: FirebaseFirestore.instance
-                                          .collection('Select_Cylinder')
-                                          .doc('Cylinder_Red') //ID OF DOCUMENT
-                                          .snapshots(),
-                                      builder: (context, snapshot) {
-                                        if (!snapshot.hasData) {
-                                          return new CircularProgressIndicator();
-                                        }
-                                        var document = snapshot.data;
-                                        bool total = document['Red'];
-                                        return Container(
-                                          child: Column(
-                                            children: [
-                                              Checkbox(
-                                                activeColor: bgAppbar,
-                                                value: CH.valueCylinder_red,
-                                                onChanged: (value) {
-                                                  setState(() {
-                                                    CH.valueCylinder_red =
-                                                        !CH.valueCylinder_red;
-                                                  });
-                                                  return Cylinder_Red =
-                                                      CH.valueCylinder_red;
-                                                },
-                                              )
-                                            ],
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(width: 20),
-                              ],
-                            ),
-                          ],
+                                  SizedBox(width: 20),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Container(
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white24,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        margin: EdgeInsets.only(
-                            left: 10, top: 10, right: 10, bottom: 10),
-                        width: 370,
-                        height: 210,
-                        child: Column(
-                          children: [
-                            Row(
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  width: 370,
-                                  height: 100,
-                                  child: Row(
-                                    children: [
-                                      SizedBox(width: 40),
-                                      Image.asset(
-                                        'assets/images/Triangle.png',
-                                      ),
-                                      Text(
-                                        'Triangle ',
-                                        style: const TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: bgAppbar,
-                                          fontSize: 40,
+              Container(
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white24,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          margin: EdgeInsets.only(
+                              left: 10, top: 10, right: 10, bottom: 10),
+                          width: 370,
+                          height: 210,
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    width: 370,
+                                    height: 100,
+                                    child: Row(
+                                      children: [
+                                        SizedBox(width: 40),
+                                        Image.asset(
+                                          'assets/images/Cube.png',
                                         ),
+                                        Text(
+                                          'Cube',
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: bgAppbar,
+                                            fontSize: 40,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  SizedBox(width: 20),
+                                  Column(
+                                    children: [
+                                      SizedBox(height: 10),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          color: Colors.blue.shade900,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        width: 70,
+                                        height: 50,
+                                      ),
+                                      StreamBuilder(
+                                        stream: FirebaseFirestore.instance
+                                            .collection('Select_Cube')
+                                            .doc('Cube_Blue') //ID OF DOCUMENT
+                                            .snapshots(),
+                                        builder: (context, snapshot) {
+                                          if (!snapshot.hasData) {
+                                            return new CircularProgressIndicator();
+                                          }
+                                          var document = snapshot.data;
+                                          bool total = document['Blue'];
+
+                                          return Container(
+                                            child: Column(
+                                              children: [
+                                                Checkbox(
+                                                  activeColor: bgAppbar,
+                                                  value: CH.valueCube_blue,
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      CH.valueCube_blue =
+                                                          !CH.valueCube_blue;
+                                                    });
+                                                    return blue =
+                                                        CH.valueCube_blue;
+                                                  },
+                                                )
+                                              ],
+                                            ),
+                                          );
+                                        },
                                       ),
                                     ],
                                   ),
-                                )
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                SizedBox(width: 20),
-                                Column(
-                                  children: [
-                                    SizedBox(height: 10),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.blue.shade900,
-                                        borderRadius: BorderRadius.circular(10),
+                                  //////////////////////////////////////////////////
+                                  Spacer(),
+                                  Column(
+                                    children: [
+                                      SizedBox(height: 10),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          color: Colors.green.shade900,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        width: 70,
+                                        height: 50,
                                       ),
-                                      width: 70,
-                                      height: 50,
-                                    ),
-                                    StreamBuilder(
-                                      stream: FirebaseFirestore.instance
-                                          .collection('Select_Triangle')
-                                          .doc('Triangle_Blue') //ID OF DOCUMENT
-                                          .snapshots(),
-                                      builder: (context, snapshot) {
-                                        if (!snapshot.hasData) {
-                                          return new CircularProgressIndicator();
-                                        }
-                                        var document = snapshot.data;
-                                        bool total = document['Blue'];
-
-                                        return Container(
-                                          child: Column(
-                                            children: [
-                                              Checkbox(
-                                                activeColor: bgAppbar,
-                                                value: CH.valueTriangle_blue,
-                                                onChanged: (value) {
-                                                  setState(() {
-                                                    CH.valueTriangle_blue =
-                                                        !CH.valueTriangle_blue;
-                                                  });
-                                                  return Triangle_Blue =
-                                                      CH.valueTriangle_blue;
-                                                },
-                                              )
-                                            ],
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  ],
-                                ),
-                                //////////////////////////////////////////////////
-                                Spacer(),
-                                Column(
-                                  children: [
-                                    SizedBox(height: 10),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.green.shade900,
-                                        borderRadius: BorderRadius.circular(10),
+                                      StreamBuilder(
+                                        stream: FirebaseFirestore.instance
+                                            .collection('Select_Cube')
+                                            .doc('Cube_Green') //ID OF DOCUMENT
+                                            .snapshots(),
+                                        builder: (context, snapshot) {
+                                          if (!snapshot.hasData) {
+                                            return new CircularProgressIndicator();
+                                          }
+                                          var document = snapshot.data;
+                                          bool total = document['Green'];
+                                          return Container(
+                                            // width: 160,
+                                            // height: 100,
+                                            child: Column(
+                                              children: [
+                                                Checkbox(
+                                                  activeColor: bgAppbar,
+                                                  value: CH.valueCube_green,
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      CH.valueCube_green =
+                                                          !CH.valueCube_green;
+                                                    });
+                                                    return green =
+                                                        CH.valueCube_green;
+                                                  },
+                                                )
+                                              ],
+                                            ),
+                                          );
+                                        },
                                       ),
-                                      width: 70,
-                                      height: 50,
-                                    ),
-                                    StreamBuilder(
-                                      stream: FirebaseFirestore.instance
-                                          .collection('Select_Triangle')
-                                          .doc(
-                                              'Triangle_Green') //ID OF DOCUMENT
-                                          .snapshots(),
-                                      builder: (context, snapshot) {
-                                        if (!snapshot.hasData) {
-                                          return new CircularProgressIndicator();
-                                        }
-                                        var document = snapshot.data;
-                                        bool total = document['Green'];
-                                        return Container(
-                                          // width: 160,
-                                          // height: 100,
-                                          child: Column(
-                                            children: [
-                                              Checkbox(
-                                                activeColor: bgAppbar,
-                                                value: CH.valueTriangle_green,
-                                                onChanged: (value) {
-                                                  setState(() {
-                                                    CH.valueTriangle_green =
-                                                        !CH.valueTriangle_green;
-                                                  });
-                                                  return Triangle_Green =
-                                                      CH.valueTriangle_green;
-                                                },
-                                              )
-                                            ],
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  ],
-                                ),
-                                Spacer(),
-                                Column(
-                                  children: [
-                                    SizedBox(height: 10),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.yellow.shade300,
-                                        borderRadius: BorderRadius.circular(10),
+                                    ],
+                                  ),
+                                  Spacer(),
+                                  Column(
+                                    children: [
+                                      SizedBox(height: 10),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          color: Colors.yellow.shade300,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        width: 70,
+                                        height: 50,
                                       ),
-                                      width: 70,
-                                      height: 50,
-                                    ),
-                                    StreamBuilder(
-                                      stream: FirebaseFirestore.instance
-                                          .collection('Select_Triangle')
-                                          .doc(
-                                              'Triangle_Yellow') //ID OF DOCUMENT
-                                          .snapshots(),
-                                      builder: (context, snapshot) {
-                                        if (!snapshot.hasData) {
-                                          return new CircularProgressIndicator();
-                                        }
-                                        var document = snapshot.data;
-                                        bool total = document['Yellow'];
-                                        return Container(
-                                          child: Column(
-                                            children: [
-                                              Checkbox(
-                                                activeColor: bgAppbar,
-                                                value: CH.valueTriangle_yellow,
-                                                onChanged: (value) {
-                                                  setState(() {
-                                                    CH.valueTriangle_yellow =
-                                                        !CH.valueTriangle_yellow;
-                                                  });
-                                                  return Triangle_Yellow =
-                                                      CH.valueTriangle_yellow;
-                                                },
-                                              )
-                                            ],
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  ],
-                                ),
-                                Spacer(),
-                                Column(
-                                  children: [
-                                    SizedBox(height: 10),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.red.shade900,
-                                        borderRadius: BorderRadius.circular(10),
+                                      StreamBuilder(
+                                        stream: FirebaseFirestore.instance
+                                            .collection('Select_Cube')
+                                            .doc('Cube_Yellow') //ID OF DOCUMENT
+                                            .snapshots(),
+                                        builder: (context, snapshot) {
+                                          if (!snapshot.hasData) {
+                                            return new CircularProgressIndicator();
+                                          }
+                                          var document = snapshot.data;
+                                          bool total = document['Yellow'];
+                                          return Container(
+                                            child: Column(
+                                              children: [
+                                                Checkbox(
+                                                  activeColor: bgAppbar,
+                                                  value: CH.valueCube_yellow,
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      CH.valueCube_yellow =
+                                                          !CH.valueCube_yellow;
+                                                    });
+                                                    return yellow =
+                                                        CH.valueCube_yellow;
+                                                  },
+                                                )
+                                              ],
+                                            ),
+                                          );
+                                        },
                                       ),
-                                      width: 70,
-                                      height: 50,
-                                    ),
-                                    StreamBuilder(
-                                      stream: FirebaseFirestore.instance
-                                          .collection('Select_Triangle')
-                                          .doc('Triangle_Red') //ID OF DOCUMENT
-                                          .snapshots(),
-                                      builder: (context, snapshot) {
-                                        if (!snapshot.hasData) {
-                                          return new CircularProgressIndicator();
-                                        }
-                                        var document = snapshot.data;
-                                        bool total = document['Red'];
-                                        return Container(
-                                          child: Column(
-                                            children: [
-                                              Checkbox(
-                                                activeColor: bgAppbar,
-                                                value: CH.valueTriangle_red,
-                                                onChanged: (value) {
-                                                  setState(() {
-                                                    CH.valueTriangle_red =
-                                                        !CH.valueTriangle_red;
-                                                  });
-                                                  return Triangle_Red =
-                                                      CH.valueTriangle_red;
-                                                },
-                                              )
-                                            ],
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(width: 20),
-                              ],
-                            ),
-                          ],
+                                    ],
+                                  ),
+                                  Spacer(),
+                                  Column(
+                                    children: [
+                                      SizedBox(height: 10),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          color: Colors.red.shade900,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        width: 70,
+                                        height: 50,
+                                      ),
+                                      StreamBuilder(
+                                        stream: FirebaseFirestore.instance
+                                            .collection('Select_Cube')
+                                            .doc('Cube_Red') //ID OF DOCUMENT
+                                            .snapshots(),
+                                        builder: (context, snapshot) {
+                                          if (!snapshot.hasData) {
+                                            return new CircularProgressIndicator();
+                                          }
+                                          var document = snapshot.data;
+                                          bool total = document['Red'];
+                                          return Container(
+                                            child: Column(
+                                              children: [
+                                                Checkbox(
+                                                  activeColor: bgAppbar,
+                                                  value: CH.valueCube_red,
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      CH.valueCube_red =
+                                                          !CH.valueCube_red;
+                                                    });
+                                                    return red =
+                                                        CH.valueCube_red;
+                                                  },
+                                                )
+                                              ],
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(width: 20),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+              Container(
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white24,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          margin: EdgeInsets.only(
+                              left: 10, top: 10, right: 10, bottom: 10),
+                          width: 370,
+                          height: 210,
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    width: 370,
+                                    height: 100,
+                                    child: Row(
+                                      children: [
+                                        SizedBox(width: 40),
+                                        Image.asset(
+                                          'assets/images/Cylinder.png',
+                                        ),
+                                        Text(
+                                          'Cylinder',
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: bgAppbar,
+                                            fontSize: 40,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  SizedBox(width: 20),
+                                  Column(
+                                    children: [
+                                      SizedBox(height: 10),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          color: Colors.blue.shade900,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        width: 70,
+                                        height: 50,
+                                      ),
+                                      StreamBuilder(
+                                        stream: FirebaseFirestore.instance
+                                            .collection('Select_Cylinder')
+                                            .doc(
+                                                'Cylinder_Blue') //ID OF DOCUMENT
+                                            .snapshots(),
+                                        builder: (context, snapshot) {
+                                          if (!snapshot.hasData) {
+                                            return new CircularProgressIndicator();
+                                          }
+                                          var document = snapshot.data;
+                                          bool total = document['Blue'];
+
+                                          return Container(
+                                            child: Column(
+                                              children: [
+                                                Checkbox(
+                                                  activeColor: bgAppbar,
+                                                  value: CH.valueCylinder_blue,
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      CH.valueCylinder_blue =
+                                                          !CH.valueCylinder_blue;
+                                                    });
+                                                    return Cylinder_Blue =
+                                                        CH.valueCylinder_blue;
+                                                  },
+                                                )
+                                              ],
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                  //////////////////////////////////////////////////
+                                  Spacer(),
+                                  Column(
+                                    children: [
+                                      SizedBox(height: 10),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          color: Colors.green.shade900,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        width: 70,
+                                        height: 50,
+                                      ),
+                                      StreamBuilder(
+                                        stream: FirebaseFirestore.instance
+                                            .collection('Select_Cylinder')
+                                            .doc(
+                                                'Cylinder_Green') //ID OF DOCUMENT
+                                            .snapshots(),
+                                        builder: (context, snapshot) {
+                                          if (!snapshot.hasData) {
+                                            return new CircularProgressIndicator();
+                                          }
+                                          var document = snapshot.data;
+                                          bool total = document['Green'];
+                                          return Container(
+                                            // width: 160,
+                                            // height: 100,
+                                            child: Column(
+                                              children: [
+                                                Checkbox(
+                                                  activeColor: bgAppbar,
+                                                  value: CH.valueCylinder_green,
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      CH.valueCylinder_green =
+                                                          !CH.valueCylinder_green;
+                                                    });
+                                                    return Cylinder_Green =
+                                                        CH.valueCylinder_green;
+                                                  },
+                                                )
+                                              ],
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                  Spacer(),
+                                  Column(
+                                    children: [
+                                      SizedBox(height: 10),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          color: Colors.yellow.shade300,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        width: 70,
+                                        height: 50,
+                                      ),
+                                      StreamBuilder(
+                                        stream: FirebaseFirestore.instance
+                                            .collection('Select_Cylinder')
+                                            .doc(
+                                                'Cylinder_Yellow') //ID OF DOCUMENT
+                                            .snapshots(),
+                                        builder: (context, snapshot) {
+                                          if (!snapshot.hasData) {
+                                            return new CircularProgressIndicator();
+                                          }
+                                          var document = snapshot.data;
+                                          bool total = document['Yellow'];
+                                          return Container(
+                                            child: Column(
+                                              children: [
+                                                Checkbox(
+                                                  activeColor: bgAppbar,
+                                                  value:
+                                                      CH.valueCylinder_yellow,
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      CH.valueCylinder_yellow =
+                                                          !CH.valueCylinder_yellow;
+                                                    });
+                                                    return Cylinder_Yellow =
+                                                        CH.valueCylinder_yellow;
+                                                  },
+                                                )
+                                              ],
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                  Spacer(),
+                                  Column(
+                                    children: [
+                                      SizedBox(height: 10),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          color: Colors.red.shade900,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        width: 70,
+                                        height: 50,
+                                      ),
+                                      StreamBuilder(
+                                        stream: FirebaseFirestore.instance
+                                            .collection('Select_Cylinder')
+                                            .doc(
+                                                'Cylinder_Red') //ID OF DOCUMENT
+                                            .snapshots(),
+                                        builder: (context, snapshot) {
+                                          if (!snapshot.hasData) {
+                                            return new CircularProgressIndicator();
+                                          }
+                                          var document = snapshot.data;
+                                          bool total = document['Red'];
+                                          return Container(
+                                            child: Column(
+                                              children: [
+                                                Checkbox(
+                                                  activeColor: bgAppbar,
+                                                  value: CH.valueCylinder_red,
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      CH.valueCylinder_red =
+                                                          !CH.valueCylinder_red;
+                                                    });
+                                                    return Cylinder_Red =
+                                                        CH.valueCylinder_red;
+                                                  },
+                                                )
+                                              ],
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(width: 20),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white24,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          margin: EdgeInsets.only(
+                              left: 10, top: 10, right: 10, bottom: 10),
+                          width: 370,
+                          height: 210,
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    width: 370,
+                                    height: 100,
+                                    child: Row(
+                                      children: [
+                                        SizedBox(width: 40),
+                                        Image.asset(
+                                          'assets/images/Triangle.png',
+                                        ),
+                                        Text(
+                                          'Triangle ',
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: bgAppbar,
+                                            fontSize: 40,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  SizedBox(width: 20),
+                                  Column(
+                                    children: [
+                                      SizedBox(height: 10),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          color: Colors.blue.shade900,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        width: 70,
+                                        height: 50,
+                                      ),
+                                      StreamBuilder(
+                                        stream: FirebaseFirestore.instance
+                                            .collection('Select_Triangle')
+                                            .doc(
+                                                'Triangle_Blue') //ID OF DOCUMENT
+                                            .snapshots(),
+                                        builder: (context, snapshot) {
+                                          if (!snapshot.hasData) {
+                                            return new CircularProgressIndicator();
+                                          }
+                                          var document = snapshot.data;
+                                          bool total = document['Blue'];
+
+                                          return Container(
+                                            child: Column(
+                                              children: [
+                                                Checkbox(
+                                                  activeColor: bgAppbar,
+                                                  value: CH.valueTriangle_blue,
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      CH.valueTriangle_blue =
+                                                          !CH.valueTriangle_blue;
+                                                    });
+                                                    return Triangle_Blue =
+                                                        CH.valueTriangle_blue;
+                                                  },
+                                                )
+                                              ],
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                  //////////////////////////////////////////////////
+                                  Spacer(),
+                                  Column(
+                                    children: [
+                                      SizedBox(height: 10),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          color: Colors.green.shade900,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        width: 70,
+                                        height: 50,
+                                      ),
+                                      StreamBuilder(
+                                        stream: FirebaseFirestore.instance
+                                            .collection('Select_Triangle')
+                                            .doc(
+                                                'Triangle_Green') //ID OF DOCUMENT
+                                            .snapshots(),
+                                        builder: (context, snapshot) {
+                                          if (!snapshot.hasData) {
+                                            return new CircularProgressIndicator();
+                                          }
+                                          var document = snapshot.data;
+                                          bool total = document['Green'];
+                                          return Container(
+                                            // width: 160,
+                                            // height: 100,
+                                            child: Column(
+                                              children: [
+                                                Checkbox(
+                                                  activeColor: bgAppbar,
+                                                  value: CH.valueTriangle_green,
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      CH.valueTriangle_green =
+                                                          !CH.valueTriangle_green;
+                                                    });
+                                                    return Triangle_Green =
+                                                        CH.valueTriangle_green;
+                                                  },
+                                                )
+                                              ],
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                  Spacer(),
+                                  Column(
+                                    children: [
+                                      SizedBox(height: 10),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          color: Colors.yellow.shade300,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        width: 70,
+                                        height: 50,
+                                      ),
+                                      StreamBuilder(
+                                        stream: FirebaseFirestore.instance
+                                            .collection('Select_Triangle')
+                                            .doc(
+                                                'Triangle_Yellow') //ID OF DOCUMENT
+                                            .snapshots(),
+                                        builder: (context, snapshot) {
+                                          if (!snapshot.hasData) {
+                                            return new CircularProgressIndicator();
+                                          }
+                                          var document = snapshot.data;
+                                          bool total = document['Yellow'];
+                                          return Container(
+                                            child: Column(
+                                              children: [
+                                                Checkbox(
+                                                  activeColor: bgAppbar,
+                                                  value:
+                                                      CH.valueTriangle_yellow,
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      CH.valueTriangle_yellow =
+                                                          !CH.valueTriangle_yellow;
+                                                    });
+                                                    return Triangle_Yellow =
+                                                        CH.valueTriangle_yellow;
+                                                  },
+                                                )
+                                              ],
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                  Spacer(),
+                                  Column(
+                                    children: [
+                                      SizedBox(height: 10),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          color: Colors.red.shade900,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        width: 70,
+                                        height: 50,
+                                      ),
+                                      StreamBuilder(
+                                        stream: FirebaseFirestore.instance
+                                            .collection('Select_Triangle')
+                                            .doc(
+                                                'Triangle_Red') //ID OF DOCUMENT
+                                            .snapshots(),
+                                        builder: (context, snapshot) {
+                                          if (!snapshot.hasData) {
+                                            return new CircularProgressIndicator();
+                                          }
+                                          var document = snapshot.data;
+                                          bool total = document['Red'];
+                                          return Container(
+                                            child: Column(
+                                              children: [
+                                                Checkbox(
+                                                  activeColor: bgAppbar,
+                                                  value: CH.valueTriangle_red,
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      CH.valueTriangle_red =
+                                                          !CH.valueTriangle_red;
+                                                    });
+                                                    return Triangle_Red =
+                                                        CH.valueTriangle_red;
+                                                  },
+                                                )
+                                              ],
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(width: 20),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -1224,4 +1336,25 @@ Future<void> resetElectronic_Capacitor() {
 
 Future<void> resetElectronic_Switch() {
   return Select_Electronic.doc('Electronic_Switch').set({'Switch': false});
+}
+
+void reset() {
+  resetCube_Blue();
+  resetCube_Green();
+  resetCube_Yellow();
+  resetCube_Red();
+  ////////////////////////////////////////////////////////////////
+  resetCylinder_Blue();
+  resetCylinder_Green();
+  resetCylinder_Yellow();
+  resetCylinder_Red();
+  ////////////////////////////////////////////////////////////////
+  resetTriangle_Blue();
+  resetTriangle_Green();
+  resetTriangle_Yellow();
+  resetTriangle_Red();
+  ////////////////////////////////////////////////////////////////
+  resetElectronic_Servo();
+  resetElectronic_Capacitor();
+  resetElectronic_Switch();
 }
