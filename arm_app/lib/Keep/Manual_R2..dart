@@ -7,85 +7,69 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-class Manual extends StatefulWidget {
+class Manual2 extends StatefulWidget {
   @override
-  _ManualState createState() => _ManualState();
+  _Manual2State createState() => _Manual2State();
 }
 
-class _ManualState extends State<Manual> {
+class _Manual2State extends State<Manual2> {
   // final Manual_db = FirebaseFirestore.instance.collection("Manual");
   final Manual_Ref = FirebaseDatabase.instance.reference();
-  DatabaseReference _Ref0 =
-      FirebaseDatabase.instance.reference().child('axis0');
-  DatabaseReference _Ref1 =
-      FirebaseDatabase.instance.reference().child('axis1');
-  DatabaseReference _Ref2 =
-      FirebaseDatabase.instance.reference().child('axis2');
-  DatabaseReference _Ref3 =
-      FirebaseDatabase.instance.reference().child('axis3');
-  DatabaseReference _Ref4 =
-      FirebaseDatabase.instance.reference().child('axis4');
-  DatabaseReference _Ref5 =
-      FirebaseDatabase.instance.reference().child('axis5');
 
-  _Get1() {
-    _Ref0.onValue.listen((event) {
-      final data = new Map<String, dynamic>.from(event.snapshot.value);
-      final value = data['value'] as int;
+  set test(double test) {}
+
+  void upvalue0() {
+    Manual_Ref.child("axis0").update({'valu': currentSliderValue0});
+  }
+
+  void upvalue1() {
+    Manual_Ref.child("axis1").update({'valu': currentSliderValue1});
+  }
+
+  void upvalue2() {
+    Manual_Ref.child("axis2").update({'valu': currentSliderValue2});
+  }
+
+  void upvalue3() {
+    Manual_Ref.child("axis3").update({'valu': currentSliderValue3});
+  }
+
+  void upvalue4() {
+    Manual_Ref.child("axis4").update({'valu': currentSliderValue4});
+  }
+
+  void upvalue5() {
+    Manual_Ref.child("axis5").update({'valu': currentSliderValue5});
+  }
+
+  // void _get() {
+  //   Manual_Ref.child("axis0/valu").once().then((DataSnapshot dataSnapshot) {
+  //     print('${dataSnapshot.value}');
+  //     // int x = dataSnapshot.value;
+  //     currentSliderValue0 = dataSnapshot.value.toDouble();
+  //   });
+  // }
+  void _get() {
+    Manual_Ref.child("axis0/valu").onValue.listen((event) {
+      final double1 = event.snapshot.value;
       setState(() {
-        currentSliderValue0 = value.round().toDouble();
-        print(' Value 0 from get : ${currentSliderValue0}');
-      });
-    });
-    _Ref1.onValue.listen((event) {
-      final data = new Map<String, dynamic>.from(event.snapshot.value);
-      final value = data['value'] as int;
-      setState(() {
-        currentSliderValue1 = value.round().toDouble();
-        print(' Value 1 from get : ${currentSliderValue1}');
-      });
-    });
-    _Ref2.onValue.listen((event) {
-      final data = new Map<String, dynamic>.from(event.snapshot.value);
-      final value = data['value'] as int;
-      setState(() {
-        currentSliderValue2 = value.round().toDouble();
-        print('Value 2 from get : ${currentSliderValue1}');
-      });
-    });
-    _Ref3.onValue.listen((event) {
-      final data = new Map<String, dynamic>.from(event.snapshot.value);
-      final value = data['value'] as int;
-      setState(() {
-        currentSliderValue3 = value.round().toDouble();
-        print('Value 3 from get : ${currentSliderValue3}');
-      });
-    });
-    _Ref4.onValue.listen((event) {
-      final data = new Map<String, dynamic>.from(event.snapshot.value);
-      final value = data['value'] as int;
-      setState(() {
-        currentSliderValue4 = value.round().toDouble();
-        print('Value 4 from get : ${currentSliderValue4}');
-      });
-    });
-    _Ref5.onValue.listen((event) {
-      final data = new Map<String, dynamic>.from(event.snapshot.value);
-      final value = data['value'] as int;
-      setState(() {
-        currentSliderValue5 = value.round().toDouble();
-        print('Value 5 from get : ${currentSliderValue5}');
+        currentSliderValue0 = double1;
+        print(currentSliderValue0);
       });
     });
   }
+
+  // final Test = Manual1.child('valu').get();
 
   @override
   void initState() {
     // init something.
 
-    _Get1();
     super.initState();
+    _get();
   }
+
+  var recentJobsRef = FirebaseDatabase.instance.reference().child('axis0');
 
   double currentSliderValue0 = 0;
   double currentSliderValue1 = 0;
@@ -93,9 +77,10 @@ class _ManualState extends State<Manual> {
   double currentSliderValue3 = 0;
   double currentSliderValue4 = 0;
   double currentSliderValue5 = 0;
-  
+
   @override
   Widget build(BuildContext context) {
+    _get();
     return Scaffold(
       appBar: AppBar(title: Text("Arm Control")),
       body: Container(
@@ -132,12 +117,13 @@ class _ManualState extends State<Manual> {
                     value: currentSliderValue0,
                     min: 0,
                     max: 180,
+                    divisions: 180,
                     label: currentSliderValue0.round().toString(),
-                    onChanged: (double value) {
+                    onChanged: (value) {
                       setState(() {
                         currentSliderValue0 = value;
+                        upvalue0();
                       });
-                      upvalue0();
                     },
                   ),
                   Text(
@@ -157,7 +143,8 @@ class _ManualState extends State<Manual> {
                   ),
                 ],
               ),
-              SizedBox(height: 10),
+              ////////////////////////////////////////////////////////////
+              SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -173,6 +160,7 @@ class _ManualState extends State<Manual> {
                     value: currentSliderValue1,
                     min: 0,
                     max: 180,
+                    divisions: 180,
                     label: currentSliderValue1.round().toString(),
                     onChanged: (double value) {
                       setState(() {
@@ -198,7 +186,8 @@ class _ManualState extends State<Manual> {
                   ),
                 ],
               ),
-              SizedBox(height: 10),
+              ////////////////////////////////////////////////////////////
+              SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -214,6 +203,7 @@ class _ManualState extends State<Manual> {
                     value: currentSliderValue2,
                     min: 0,
                     max: 180,
+                    divisions: 180,
                     label: currentSliderValue2.round().toString(),
                     onChanged: (double value) {
                       setState(() {
@@ -239,7 +229,8 @@ class _ManualState extends State<Manual> {
                   ),
                 ],
               ),
-              SizedBox(height: 10),
+              ////////////////////////////////////////////////////////////
+              SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -255,6 +246,7 @@ class _ManualState extends State<Manual> {
                     value: currentSliderValue3,
                     min: 0,
                     max: 180,
+                    divisions: 180,
                     label: currentSliderValue3.round().toString(),
                     onChanged: (double value) {
                       setState(() {
@@ -280,6 +272,7 @@ class _ManualState extends State<Manual> {
                   ),
                 ],
               ),
+              ////////////////////////////////////////////////////////////
               SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -296,6 +289,7 @@ class _ManualState extends State<Manual> {
                     value: currentSliderValue4,
                     min: 0,
                     max: 180,
+                    divisions: 180,
                     label: currentSliderValue4.round().toString(),
                     onChanged: (double value) {
                       setState(() {
@@ -321,6 +315,7 @@ class _ManualState extends State<Manual> {
                   ),
                 ],
               ),
+              ////////////////////////////////////////////////////////////
               SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -337,12 +332,13 @@ class _ManualState extends State<Manual> {
                     value: currentSliderValue5,
                     min: 0,
                     max: 180,
+                    divisions: 180,
                     label: currentSliderValue5.round().toString(),
                     onChanged: (double value) {
                       setState(() {
                         currentSliderValue5 = value;
                       });
-                      upvalue2();
+                      upvalue5();
                     },
                   ),
                   Text(
@@ -367,29 +363,5 @@ class _ManualState extends State<Manual> {
         ),
       ),
     );
-  }
-
-  void upvalue0() {
-    Manual_Ref.child("axis0").update({'value': currentSliderValue0.round()});
-  }
-
-  void upvalue1() {
-    Manual_Ref.child("axis1").update({'value': currentSliderValue1.round()});
-  }
-
-  void upvalue2() {
-    Manual_Ref.child("axis2").update({'value': currentSliderValue2.round()});
-  }
-
-  void upvalue3() {
-    Manual_Ref.child("axis3").update({'value': currentSliderValue3.round()});
-  }
-
-  void upvalue4() {
-    Manual_Ref.child("axis4").update({'value': currentSliderValue4.round()});
-  }
-
-  void upvalue5() {
-    Manual_Ref.child("axis5").update({'value': currentSliderValue5.round()});
   }
 }

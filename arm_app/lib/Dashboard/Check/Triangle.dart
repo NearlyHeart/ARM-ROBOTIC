@@ -27,6 +27,7 @@ class _Equilateral_triangleState extends State<Equilateral_triangle> {
             SizedBox(height: 10),
 
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(width: 20),
                 Container(
@@ -113,6 +114,7 @@ class _Equilateral_triangleState extends State<Equilateral_triangle> {
             ),
             ///////////////////////////////////////////////////////////////////
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(width: 20),
                 StreamBuilder(
@@ -248,6 +250,7 @@ class _Equilateral_triangleState extends State<Equilateral_triangle> {
             ///////////////////////////////////////////////////////////////////
 
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(width: 20),
                 StreamBuilder(
@@ -338,7 +341,6 @@ class _Equilateral_triangleState extends State<Equilateral_triangle> {
                       child: Container(
                         child: Column(
                           children: [
-                            
                             Container(
                               decoration: BoxDecoration(
                                 color: Colors.yellow.shade400,
@@ -349,7 +351,6 @@ class _Equilateral_triangleState extends State<Equilateral_triangle> {
                               width: 160,
                               height: 100,
                             ),
-
                             Text(
                               document['Count'].toString(),
                               style: TextStyle(
@@ -377,4 +378,3 @@ class _Equilateral_triangleState extends State<Equilateral_triangle> {
     );
   }
 }
-

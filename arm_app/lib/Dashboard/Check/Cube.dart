@@ -2,8 +2,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-// CollectionReference Cylinder_db = FirebaseFirestore.instance.collection("Cube");
-// final Test_db = FirebaseFirestore.instance.collection("Cube");
+CollectionReference Cylinder_db = FirebaseFirestore.instance.collection("Cube");
+final Test_db = FirebaseFirestore.instance.collection("Cube");
 
 class Cube extends StatefulWidget {
   final int xs;
@@ -28,8 +28,8 @@ class _CubeState extends State<Cube> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(height: 10),
-
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(width: 20),
                   Container(
@@ -99,6 +99,7 @@ class _CubeState extends State<Cube> {
               ),
               ///////////////////////////////////////////////////////////////////
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(width: 20),
                   StreamBuilder(
@@ -197,8 +198,8 @@ class _CubeState extends State<Cube> {
                 ],
               ),
               ///////////////////////////////////////////////////////////////////
-
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(width: 20),
                   StreamBuilder(

@@ -34,10 +34,11 @@ class _Auto2State extends State<Auto2> {
   bool Electronic_Servo = false,
       Electronic_Capacitor = false,
       Electronic_Switch = false;
-  bool CheckBbutton;
+  bool CheckBbutton = false;
 
   @override
   Widget build(BuildContext context) {
+    bool throwShotAway = false;
     return Scaffold(
       appBar: AppBar(
         title: Text("Auto"),
@@ -67,24 +68,6 @@ class _Auto2State extends State<Auto2> {
             Spacer(),
             ElevatedButton(
               onPressed: () {
-                // setCube_Green(green);
-                // setCube_Blue(blue);
-                // setCube_Yellow(yellow);
-                // setCube_Red(red);
-                // ///////////////////////////////////////////////////////////////
-                // setCylinder_Green(Cylinder_Green);
-                // setCylinder_Blue(Cylinder_Blue);
-                // setCylinder_Yellow(Cylinder_Yellow);
-                // setCylinder_Red(Cylinder_Red);
-                // ///////////////////////////////////////////////////////////////
-                // setTriangle_Green(Triangle_Green);
-                // setTriangle_Blue(Triangle_Blue);
-                // setTriangle_Yellow(Triangle_Yellow);
-                // setTriangle_Red(Triangle_Red);
-                // ////////////////////////////////////////////////////////////////
-                // setElectronic_Servo(Electronic_Servo);
-                // setElectronic_Capacitor(Electronic_Capacitor);
-                // setElectronic_Switch(Electronic_Switch);
                 showDialog(
                     context: context,
                     builder: (BuildContext conttext) {
@@ -112,17 +95,30 @@ class _Auto2State extends State<Auto2> {
                                   Text('**กรุณาเลือกรายการวัตถุ**')
                                 else
                                   Text('==== รายที่เลือก ===='),
+                                // if (Electronic_Capacitor != false ||
+                                //     Electronic_Switch != false ||
+                                //     Electronic_Servo != false)
+                                //   Text('-------------------'),
                                 if (Electronic_Capacitor != false)
                                   Text('Capacitor'),
-                                if (Electronic_Switch != false)
-                                  Text('Capacitor'),
-                                Text('=================='),
+                                if (Electronic_Switch != false) Text('Switch'),
+                                if (Electronic_Servo != false) Text('Servo'),
+                                if (Electronic_Capacitor != false ||
+                                    Electronic_Switch != false ||
+                                    Electronic_Servo != false)
+                                  Text('-------------------'),
+                                //////////////////////////////////////////////////
+
                                 if (blue != false) Text('Blue Cube '),
                                 if (red != false) Text('Red Cube '),
                                 if (green != false) Text('Green Cube '),
                                 if (yellow != false) Text('Yellow Cube '),
+                                if (blue != false ||
+                                    red != false ||
+                                    green != false ||
+                                    yellow != false)
+                                  Text('-------------------'),
                                 //////////////////////////////////////////////////
-                                Text('=================='),
                                 if (Cylinder_Green != false)
                                   Text('Green Cylinder '),
                                 if (Cylinder_Blue != false)
@@ -131,8 +127,13 @@ class _Auto2State extends State<Auto2> {
                                   Text('Yellow Cylinder '),
                                 if (Cylinder_Red != false)
                                   Text('Red Cylinder '),
+                                if (Cylinder_Green != false ||
+                                    Cylinder_Blue != false ||
+                                    Cylinder_Yellow != false ||
+                                    Cylinder_Red != false)
+                                  Text('-------------------'),
                                 //////////////////////////////////////////////////
-                                Text('=================='),
+
                                 if (Triangle_Green != false)
                                   Text('Green Triangle '),
                                 if (Triangle_Blue != false)
@@ -141,7 +142,11 @@ class _Auto2State extends State<Auto2> {
                                   Text('Yellow Triangle '),
                                 if (Triangle_Red != false)
                                   Text('Red Triangle '),
-                                Text('=================='),
+                                if (Triangle_Green != false ||
+                                    Triangle_Blue != false ||
+                                    Triangle_Yellow != false ||
+                                    Triangle_Red != false)
+                                  Text('-------------------'),
                               ],
                             ),
                           ),
@@ -149,31 +154,29 @@ class _Auto2State extends State<Auto2> {
                             TextButton(
                               onPressed: () {
                                 Navigator.pop(context);
-                                Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(
-                                        builder: (context) => Auto2()));
+                                // Navigator.of(context).pushReplacement(
+                                //     MaterialPageRoute(
+                                //         builder: (context) => Auto2()));
                               },
                               child: Text('ยกเลิก'),
                             ),
                             TextButton(
                               onPressed: () {
-                                if (red != true &&
-                                    blue != true &&
-                                    yellow != true &&
-                                    green != true &&
-                                    Cylinder_Green != true &&
-                                    Cylinder_Blue != true &&
-                                    Cylinder_Yellow != true &&
-                                    Cylinder_Red != true &&
-                                    Triangle_Green != true &&
-                                    Triangle_Blue != true &&
-                                    Triangle_Yellow != true &&
-                                    Triangle_Red != true &&
-                                    Electronic_Servo != true &&
-                                    Electronic_Capacitor != true &&
-                                    Electronic_Switch != true)
-                                  Navigator.pop(context);
-                                else
+                                if (red != false ||
+                                    blue != false ||
+                                    yellow != false ||
+                                    green != false ||
+                                    Cylinder_Green != false ||
+                                    Cylinder_Blue != false ||
+                                    Cylinder_Yellow != false ||
+                                    Cylinder_Red != false ||
+                                    Triangle_Green != false ||
+                                    Triangle_Blue != false ||
+                                    Triangle_Yellow != false ||
+                                    Triangle_Red != false ||
+                                    Electronic_Servo != false ||
+                                    Electronic_Capacitor != false ||
+                                    Electronic_Switch != false)
                                   setCube_Green(green);
                                 setCube_Blue(blue);
                                 setCube_Yellow(yellow);
@@ -195,6 +198,23 @@ class _Auto2State extends State<Auto2> {
                                 Navigator.of(context).pushReplacement(
                                     MaterialPageRoute(
                                         builder: (context) => Board()));
+
+                                if (red != true &&
+                                    blue != true &&
+                                    yellow != true &&
+                                    green != true &&
+                                    Cylinder_Green != true &&
+                                    Cylinder_Blue != true &&
+                                    Cylinder_Yellow != true &&
+                                    Cylinder_Red != true &&
+                                    Triangle_Green != true &&
+                                    Triangle_Blue != true &&
+                                    Triangle_Yellow != true &&
+                                    Triangle_Red != true &&
+                                    Electronic_Servo != true &&
+                                    Electronic_Capacitor != true &&
+                                    Electronic_Switch != true)
+                                  Navigator.pop(context);
                               },
                               child: Text('ยืนยัน'),
                             ),
@@ -224,6 +244,7 @@ class _Auto2State extends State<Auto2> {
                 child: Column(
                   children: [
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
                           decoration: BoxDecoration(
@@ -292,6 +313,9 @@ class _Auto2State extends State<Auto2> {
                                           if (!snapshot.hasData) {
                                             return new CircularProgressIndicator();
                                           }
+                                          // CH.Testget();
+                                          // print(CH.valueElectronic_Servo
+                                          //     .toString());
                                           return Container(
                                             child: Column(
                                               children: [
@@ -302,7 +326,7 @@ class _Auto2State extends State<Auto2> {
                                                   onChanged: (value) {
                                                     setState(() {
                                                       CH.valueElectronic_Servo =
-                                                          !CH.valueElectronic_Servo;
+                                                          !CH.valueElectronic_Servo;                                       
                                                     });
                                                     return Electronic_Servo = CH
                                                         .valueElectronic_Servo;
@@ -434,6 +458,7 @@ class _Auto2State extends State<Auto2> {
                 child: Column(
                   children: [
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
                           decoration: BoxDecoration(
@@ -640,8 +665,6 @@ class _Auto2State extends State<Auto2> {
                                           if (!snapshot.hasData) {
                                             return new CircularProgressIndicator();
                                           }
-                                          var document = snapshot.data;
-                                          bool total = document['Red'];
                                           return Container(
                                             child: Column(
                                               children: [
@@ -679,6 +702,7 @@ class _Auto2State extends State<Auto2> {
                 child: Column(
                   children: [
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
                           decoration: BoxDecoration(
@@ -929,6 +953,7 @@ class _Auto2State extends State<Auto2> {
                 child: Column(
                   children: [
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
                           decoration: BoxDecoration(

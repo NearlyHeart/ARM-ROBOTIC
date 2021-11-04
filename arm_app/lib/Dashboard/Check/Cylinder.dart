@@ -31,6 +31,7 @@ class _CylinderState extends State<Cylinder> {
               SizedBox(height: 10),
 
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(width: 20),
                   Container(
@@ -117,6 +118,7 @@ class _CylinderState extends State<Cylinder> {
               ),
               ///////////////////////////////////////////////////////////////////
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(width: 20),
                   StreamBuilder(
@@ -252,6 +254,7 @@ class _CylinderState extends State<Cylinder> {
               ///////////////////////////////////////////////////////////////////
 
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(width: 20),
                   StreamBuilder(

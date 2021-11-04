@@ -15,44 +15,47 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 150,
-            ),
-            Image.asset(
-              'assets/images/logo.png',
-              height: 300,
-              width: 400,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Setting()));
-              },
-              child: Text('SETTING', style: TextStyle(fontSize: 20)),
-              style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.fromLTRB(100, 10, 100, 10),
-                  primary: Color(0xFF061C31)),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Board()));
-              },
-              child: Text(
-                'Checking objects',
-                style: TextStyle(fontSize: 20),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 150,
               ),
-              style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.fromLTRB(55, 10, 55, 10),
-                  primary: Color(0xFF061C31)),
-            ),
-          ],
+              Image.asset(
+                'assets/images/logo.png',
+                height: 300,
+                width: 400,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Setting()));
+                },
+                child: Text('SETTING', style: TextStyle(fontSize: 20)),
+                style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.fromLTRB(100, 10, 100, 10),
+                    primary: Color(0xFF061C31)),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Board()));
+                },
+                child: Text(
+                  'CHECKING OBJECTS',
+                  style: TextStyle(fontSize: 20),
+                ),
+                style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.fromLTRB(45, 10, 45, 10),
+                    primary: Color(0xFF061C31)),
+              ),
+            ],
+          ),
         ),
       ),
     );
