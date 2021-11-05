@@ -33,7 +33,7 @@ class _SettingState extends State<Setting> {
               //       fontWeight: FontWeight.bold, color: Colors.white),
               // ),
               Text(
-                "SELECT MODE",
+                "การควบคุมแขนกล",
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
@@ -52,9 +52,16 @@ class _SettingState extends State<Setting> {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => Auto2()));
                 },
-                child: Text('AUTOMATIC'),
+                child: Text(
+                  'ควบคุมอัตโนมัติ',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    fontSize: 20,
+                  ),
+                ),
                 style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.fromLTRB(90, 10, 90, 10),
+                    padding: EdgeInsets.fromLTRB(60, 10, 60, 10),
                     primary: Color(0xFF061C31)),
               ),
               SizedBox(height: 60),
@@ -62,11 +69,18 @@ class _SettingState extends State<Setting> {
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) =>Manual()));
+                      MaterialPageRoute(builder: (context) => Manual()));
                 },
-                child: Text('MANUAL'),
+                child: Text(
+                  'ควบคุมด้วยตนอง',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    fontSize: 20,
+                  ),
+                ),
                 style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.fromLTRB(100, 10, 100, 10),
+                    padding: EdgeInsets.fromLTRB(60, 10, 60, 10),
                     primary: Color(0xFF061C31)),
               ),
             ],

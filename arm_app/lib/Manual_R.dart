@@ -342,7 +342,7 @@ class _ManualState extends State<Manual> {
                       setState(() {
                         currentSliderValue5 = value;
                       });
-                      upvalue2();
+                      upvalue5();
                     },
                   ),
                   Text(

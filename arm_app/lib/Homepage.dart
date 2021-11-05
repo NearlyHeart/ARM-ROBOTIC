@@ -33,9 +33,9 @@ class _HomepageState extends State<Homepage> {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => Setting()));
                 },
-                child: Text('SETTING', style: TextStyle(fontSize: 20)),
+                child: Text('ตั้งค่าการควบคุม', style: TextStyle(fontSize: 20)),
                 style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.fromLTRB(100, 10, 100, 10),
+                    padding: EdgeInsets.fromLTRB(55, 10, 55, 10),
                     primary: Color(0xFF061C31)),
               ),
               SizedBox(
@@ -47,11 +47,11 @@ class _HomepageState extends State<Homepage> {
                       MaterialPageRoute(builder: (context) => Board()));
                 },
                 child: Text(
-                  'CHECKING OBJECTS',
+                  'เช็คจำนวนวัตถุ',
                   style: TextStyle(fontSize: 20),
                 ),
                 style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.fromLTRB(45, 10, 45, 10),
+                    padding: EdgeInsets.fromLTRB(60, 10, 60, 10),
                     primary: Color(0xFF061C31)),
               ),
             ],
