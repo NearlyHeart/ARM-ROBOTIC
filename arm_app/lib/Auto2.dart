@@ -21,22 +21,7 @@ class Auto2 extends StatefulWidget {
 }
 
 class _Auto2State extends State<Auto2> {
-  int selectedServo;
-  final CH = Check();
-  bool blue = false, green = false, yellow = false, red = false;
-  bool Cylinder_Blue = false,
-      Cylinder_Green = false,
-      Cylinder_Yellow = false,
-      Cylinder_Red = false;
-  bool Triangle_Blue = false,
-      Triangle_Green = false,
-      Triangle_Yellow = false,
-      Triangle_Red = false;
-  bool Electronic_Servo = true,
-      Electronic_Capacitor = false,
-      Electronic_Switch = false;
-  bool CheckBbutton = false;
-
+  
   bool valueCube_blue = false;
   bool valueCube_green = false;
   bool valueCube_yellow = false;

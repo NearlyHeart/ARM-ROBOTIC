@@ -21,29 +21,80 @@ class _BottomNavBarState extends State<BottomNavBar> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: CurvedNavigationBar(
-        index: page,
-        height: 50.0,
-        items: <Widget>[
-          // Icon(Icons.accessibility, size: 30),
-          Icon(Icons.crop_portrait_rounded, size: 30),
-          Icon(Icons.stop, size: 30),
-          Icon(Icons.signal_cellular_4_bar_sharp, size: 30),
-        ],
-        color: bgAppbar,
-        buttonBackgroundColor: bgAppbar,
-        backgroundColor: bgColor,
-        animationCurve: Curves.easeInExpo,
-        animationDuration: Duration(milliseconds: 600),
-        onTap: (index) {
-          setState(() {
-            page = index;
-          });
-        },
-        letIndexChange: (index) => true,
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Geometry Former'),
+          bottom: PreferredSize(
+            preferredSize: Size(70.0, 70.0),
+            child: TabBar(
+              tabs: [
+                Container(
+                  child: Column(
+                    children: [
+                      SizedBox(height: 10),
+                      Icon(Icons.crop_portrait_rounded, size: 30),
+                      SizedBox(height: 5),
+                      Text('Cylinder'),
+                      SizedBox(height: 10),
+                    ],
+                  ),
+                ),
+                Container(
+                  child: Column(
+                    children: [
+                      SizedBox(height: 10),
+                      Icon(Icons.stop, size: 30),
+                      SizedBox(height: 5),
+                      Text('Cube'),
+                      SizedBox(height: 10),
+                    ],
+                  ),
+                ),
+                Container(
+                  child: Column(
+                    children: [
+                      SizedBox(height: 10),
+                      Icon(Icons.signal_cellular_4_bar_sharp, size: 30),
+                      SizedBox(height: 5),
+                      Text('Triangle'),
+                      SizedBox(height: 10),
+                    ],
+                  ),
+                ),
+              ],
+              onTap: (index) {
+                setState(() {
+                  page = index;
+                });
+              },
+            ),
+          ),
+        ),
+        // bottomNavigationBar: CurvedNavigationBar(
+        //   index: page,
+        //   height: 50.0,
+        //   items: <Widget>[
+        //     // Icon(Icons.accessibility, size: 30),
+        //     Icon(Icons.crop_portrait_rounded, size: 30),
+        //     Icon(Icons.stop, size: 30),
+        //     Icon(Icons.signal_cellular_4_bar_sharp, size: 30),
+        //   ],
+        //   color: bgAppbar,
+        //   buttonBackgroundColor: bgAppbar,
+        //   backgroundColor: bgColor,
+        //   animationCurve: Curves.easeInExpo,
+        //   animationDuration: Duration(milliseconds: 600),
+        //   onTap: (index) {
+        //     setState(() {
+        //       page = index;
+        //     });
+        //   },
+        //   letIndexChange: (index) => true,
+        // ),
+        body: sreen[page],
       ),
-      body: sreen[page],
     );
   }
 }

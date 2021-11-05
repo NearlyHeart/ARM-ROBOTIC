@@ -32,15 +32,20 @@ class _ManualState extends State<Manual> {
     _Ref0.onValue.listen((event) {
       final data = new Map<String, dynamic>.from(event.snapshot.value);
       final value = data['value'] as int;
+      final angle = data['angle'] as int;
       setState(() {
+        angle0 = angle;
         currentSliderValue0 = value.round().toDouble();
         print(' Value 0 from get : ${currentSliderValue0}');
+        print(' angle0 from get : ${angle0}');
       });
     });
     _Ref1.onValue.listen((event) {
       final data = new Map<String, dynamic>.from(event.snapshot.value);
       final value = data['value'] as int;
+      final angle = data['angle'] as int;
       setState(() {
+        angle1 = angle;
         currentSliderValue1 = value.round().toDouble();
         print(' Value 1 from get : ${currentSliderValue1}');
       });
@@ -48,7 +53,9 @@ class _ManualState extends State<Manual> {
     _Ref2.onValue.listen((event) {
       final data = new Map<String, dynamic>.from(event.snapshot.value);
       final value = data['value'] as int;
+      final angle = data['angle'] as int;
       setState(() {
+        angle2 = angle;
         currentSliderValue2 = value.round().toDouble();
         print('Value 2 from get : ${currentSliderValue1}');
       });
@@ -56,7 +63,9 @@ class _ManualState extends State<Manual> {
     _Ref3.onValue.listen((event) {
       final data = new Map<String, dynamic>.from(event.snapshot.value);
       final value = data['value'] as int;
+      final angle = data['angle'] as int;
       setState(() {
+        angle3 = angle;
         currentSliderValue3 = value.round().toDouble();
         print('Value 3 from get : ${currentSliderValue3}');
       });
@@ -64,7 +73,9 @@ class _ManualState extends State<Manual> {
     _Ref4.onValue.listen((event) {
       final data = new Map<String, dynamic>.from(event.snapshot.value);
       final value = data['value'] as int;
+      final angle = data['angle'] as int;
       setState(() {
+        angle4 = angle;
         currentSliderValue4 = value.round().toDouble();
         print('Value 4 from get : ${currentSliderValue4}');
       });
@@ -72,7 +83,9 @@ class _ManualState extends State<Manual> {
     _Ref5.onValue.listen((event) {
       final data = new Map<String, dynamic>.from(event.snapshot.value);
       final value = data['value'] as int;
+      final angle = data['angle'] as int;
       setState(() {
+        angle5 = angle;
         currentSliderValue5 = value.round().toDouble();
         print('Value 5 from get : ${currentSliderValue5}');
       });
@@ -87,13 +100,20 @@ class _ManualState extends State<Manual> {
     super.initState();
   }
 
+  int angle0 = 0;
+  int angle1 = 0;
+  int angle2 = 0;
+  int angle3 = 0;
+  int angle4 = 0;
+  int angle5 = 0;
+
   double currentSliderValue0 = 0;
   double currentSliderValue1 = 0;
   double currentSliderValue2 = 0;
   double currentSliderValue3 = 0;
   double currentSliderValue4 = 0;
   double currentSliderValue5 = 0;
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -132,7 +152,7 @@ class _ManualState extends State<Manual> {
                     value: currentSliderValue0,
                     min: 0,
                     max: 180,
-                    label: currentSliderValue0.round().toString(),
+                    label: angle0.round().toString(),
                     onChanged: (double value) {
                       setState(() {
                         currentSliderValue0 = value;
@@ -141,7 +161,7 @@ class _ManualState extends State<Manual> {
                     },
                   ),
                   Text(
-                    currentSliderValue0.round().toString(),
+                    angle0.round().toString(),
                     style: TextStyle(
                       fontSize: 20,
                       color: Colors.blue[900],
@@ -173,7 +193,7 @@ class _ManualState extends State<Manual> {
                     value: currentSliderValue1,
                     min: 0,
                     max: 180,
-                    label: currentSliderValue1.round().toString(),
+                    label: angle1.round().toString(),
                     onChanged: (double value) {
                       setState(() {
                         currentSliderValue1 = value;
@@ -182,7 +202,7 @@ class _ManualState extends State<Manual> {
                     },
                   ),
                   Text(
-                    currentSliderValue1.round().toString(),
+                    angle1.round().toString(),
                     style: TextStyle(
                       fontSize: 20,
                       color: Colors.blue[900],
@@ -214,7 +234,7 @@ class _ManualState extends State<Manual> {
                     value: currentSliderValue2,
                     min: 0,
                     max: 180,
-                    label: currentSliderValue2.round().toString(),
+                    label: angle2.round().toString(),
                     onChanged: (double value) {
                       setState(() {
                         currentSliderValue2 = value;
@@ -223,7 +243,7 @@ class _ManualState extends State<Manual> {
                     },
                   ),
                   Text(
-                    currentSliderValue2.round().toString(),
+                    angle2.round().toString(),
                     style: TextStyle(
                       fontSize: 20,
                       color: Colors.blue[900],
@@ -255,7 +275,7 @@ class _ManualState extends State<Manual> {
                     value: currentSliderValue3,
                     min: 0,
                     max: 180,
-                    label: currentSliderValue3.round().toString(),
+                    label: angle3.round().toString(),
                     onChanged: (double value) {
                       setState(() {
                         currentSliderValue3 = value;
@@ -264,7 +284,7 @@ class _ManualState extends State<Manual> {
                     },
                   ),
                   Text(
-                    currentSliderValue3.round().toString(),
+                    angle3.round().toString(),
                     style: TextStyle(
                       fontSize: 20,
                       color: Colors.blue[900],
@@ -296,7 +316,7 @@ class _ManualState extends State<Manual> {
                     value: currentSliderValue4,
                     min: 0,
                     max: 180,
-                    label: currentSliderValue4.round().toString(),
+                    label: angle4.round().toString(),
                     onChanged: (double value) {
                       setState(() {
                         currentSliderValue4 = value;
@@ -305,7 +325,7 @@ class _ManualState extends State<Manual> {
                     },
                   ),
                   Text(
-                    currentSliderValue4.round().toString(),
+                    angle4.round().toString(),
                     style: TextStyle(
                       fontSize: 20,
                       color: Colors.blue[900],
@@ -337,7 +357,7 @@ class _ManualState extends State<Manual> {
                     value: currentSliderValue5,
                     min: 0,
                     max: 180,
-                    label: currentSliderValue5.round().toString(),
+                    label: angle5.round().toString(),
                     onChanged: (double value) {
                       setState(() {
                         currentSliderValue5 = value;
@@ -346,7 +366,7 @@ class _ManualState extends State<Manual> {
                     },
                   ),
                   Text(
-                    currentSliderValue5.round().toString(),
+                    angle5.round().toString(),
                     style: TextStyle(
                       fontSize: 20,
                       color: Colors.blue[900],

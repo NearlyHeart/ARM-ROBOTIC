@@ -18,6 +18,24 @@ final Stream<QuerySnapshot> _usersStream =
     FirebaseFirestore.instance.collection('Cube').snapshots();
 
 class Electronic extends StatelessWidget {
+  Future reset() {
+    Servo_db.snapshots().forEach((element) {
+      for (QueryDocumentSnapshot snapshot in element.docs) {
+        snapshot.reference.delete();
+      }
+    });
+    Switch_db.snapshots().forEach((element) {
+      for (QueryDocumentSnapshot snapshot in element.docs) {
+        snapshot.reference.delete();
+      }
+    });
+    Capacitor_db.snapshots().forEach((element) {
+      for (QueryDocumentSnapshot snapshot in element.docs) {
+        snapshot.reference.delete();
+      }
+    });
+  }
+
   const Electronic({
     Key key,
   }) : super(key: key);
@@ -241,6 +259,28 @@ class Electronic extends StatelessWidget {
               ],
             ),
             SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    reset();
+                  },
+                  child: Text(
+                    "ล้างข้อมูล",
+                    style: TextStyle(
+                      // fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.fromLTRB(130, 5, 130, 5),
+                    primary: Color(0xFF4E070F),
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),

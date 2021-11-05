@@ -2,8 +2,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-// CollectionReference Cylinder_db = FirebaseFirestore.instance.collection("Triangle");
-// final Test_db = FirebaseFirestore.instance.collection("Triangle");
+CollectionReference Triangle_db =
+    FirebaseFirestore.instance.collection("Triangle");
 
 class Equilateral_triangle extends StatefulWidget {
   Equilateral_triangle({
@@ -15,12 +15,20 @@ class Equilateral_triangle extends StatefulWidget {
 }
 
 class _Equilateral_triangleState extends State<Equilateral_triangle> {
+  Future reset() {
+    Triangle_db.doc('Triangle_Blue').update({'Count': 0});
+    Triangle_db.doc('Triangle_Green').update({'Count': 0});
+    Triangle_db.doc('Triangle_Red').update({'Count': 0});
+    Triangle_db.doc('Triangle_Yellow').update({'Count': 0});
+    Triangle_db.doc('Triangle_Sum').update({'Sum': 0});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(" Equilateral Triangle"),
-      ),
+      // appBar: AppBar(
+      //   title: Text(" Equilateral Triangle"),
+      // ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -29,7 +37,6 @@ class _Equilateral_triangleState extends State<Equilateral_triangle> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(width: 20),
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -116,7 +123,6 @@ class _Equilateral_triangleState extends State<Equilateral_triangle> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(width: 20),
                 StreamBuilder(
                   stream: FirebaseFirestore.instance
                       .collection('Triangle')
@@ -252,7 +258,6 @@ class _Equilateral_triangleState extends State<Equilateral_triangle> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(width: 20),
                 StreamBuilder(
                   stream: FirebaseFirestore.instance
                       .collection('Triangle')
@@ -367,10 +372,28 @@ class _Equilateral_triangleState extends State<Equilateral_triangle> {
               ],
             ),
             ///////////////////////////////////////////////////////////////////
-            Text(
-              "__________________________________________",
-              style: const TextStyle(
-                  fontWeight: FontWeight.bold, color: Colors.white),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    reset();
+                  },
+                  child: Text(
+                    "ล้างข้อมูล",
+                    style: TextStyle(
+                      // fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.fromLTRB(130, 5, 130, 5),
+                    primary: Color(0xFF4E070F),
+                  ),
+                ),
+              ],
             ),
           ],
         ),

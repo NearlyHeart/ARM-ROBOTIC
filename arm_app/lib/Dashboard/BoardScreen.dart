@@ -145,7 +145,7 @@ class _BoardState extends State<Board> {
                       Title(
                           color: bgAppbar,
                           child: Text(
-                            "Geometriske Former",
+                            "Geometry Former",
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               color: bgAppbar,
