@@ -3,6 +3,7 @@ import 'package:arm_app/Constants.dart';
 import 'package:arm_app/Dashboard/BoardScreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
 
 final Select_Cube = FirebaseFirestore.instance.collection("Select_Cube");
@@ -21,7 +22,6 @@ class Auto2 extends StatefulWidget {
 }
 
 class _Auto2State extends State<Auto2> {
-  
   bool valueCube_blue = false;
   bool valueCube_green = false;
   bool valueCube_yellow = false;
@@ -40,10 +40,161 @@ class _Auto2State extends State<Auto2> {
   bool valueElectronic_Servo = false;
   bool valueElectronic_Capacitor = false;
   bool valueElectronic_Switch = false;
+
+  DatabaseReference _status =
+      FirebaseDatabase.instance.reference().child('check_arm');
+
+  bool CheckARM;
+  _ChecK_arm() {
+    _status.onValue.listen((event) {
+      final data = new Map<String, dynamic>.from(event.snapshot.value);
+      final status = data['status'] as bool;
+      setState(() {
+        CheckARM = status;
+        print('status get : ${CheckARM}');
+      });
+    });
+  }
+
+  void _showFlash_true({
+    Duration duration,
+    flashStyle = FlashBehavior.floating,
+  }) {
+    showFlash(
+      context: context,
+      duration: const Duration(milliseconds: 3000),
+      builder: (context, controller) {
+        return Flash(
+          controller: controller,
+          behavior: flashStyle,
+          position: FlashPosition.top,
+          brightness: Brightness.light,
+          barrierBlur: 3.0, //พื้นหลังBlur
+          barrierColor: Colors.black38, //พื้นหลัง
+          boxShadows: [BoxShadow(blurRadius: 4)],
+          horizontalDismissDirection: HorizontalDismissDirection.horizontal,
+          // backgroundGradient: RadialGradient(
+          //   colors: [Colors.green.shade100, Colors.green.shade900],
+          //   center: Alignment.topLeft,
+          //   radius: 10,
+          // ),
+          child: FlashBar(
+            icon: Icon(
+              Icons.play_arrow,
+              size: 40,
+              color: Colors.green.shade900,
+            ),
+            indicatorColor: Colors.green.shade900,
+            content: Container(
+              child: Row(
+                children: [
+                  Text(
+                    'แขนกลกำลังทำงาน',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.green.shade900,
+                      fontSize: 20,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void _showFlash_false({
+    Duration duration,
+    flashStyle = FlashBehavior.floating,
+  }) {
+    showFlash(
+      context: context,
+      duration: const Duration(milliseconds: 3000),
+      builder: (context, controller) {
+        return Flash(
+          controller: controller,
+          behavior: flashStyle,
+          position: FlashPosition.top,
+          brightness: Brightness.light,
+          barrierBlur: 3.0, //พื้นหลังBlur
+          barrierColor: Colors.black38, //พื้นหลัง
+          boxShadows: [BoxShadow(blurRadius: 4)],
+          horizontalDismissDirection: HorizontalDismissDirection.horizontal,
+          child: FlashBar(
+            icon: Icon(
+              Icons.adjust_rounded,
+              size: 40,
+              color: Colors.red.shade900,
+            ),
+            indicatorColor: Colors.red.shade900,
+            content: Container(
+              child: Row(
+                children: [
+                  Text(
+                    'แขนกลหยุดทำงาน',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.red.shade900,
+                      fontSize: 20,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void _showDialogFlash() {
+    context.showFlashDialog(
+      borderColor: Colors.green,
+      backgroundColor: Colors.white,
+      title: Text(
+        'Success!!',
+        style: TextStyle(
+          color: Colors.green.shade900,
+          fontSize: 20,
+        ),
+      ),
+      content: Text(
+        'เปลียนแปลงวัตถุที่จะคัดแยกแล้ว',
+        style: TextStyle(
+          color: Colors.green.shade900,
+          fontSize: 18,
+        ),
+      ),
+    );
+  }
+
+  void _showDialogReset() {
+    context.showFlashDialog(
+      borderColor: Colors.red,
+      backgroundColor: Colors.white,
+      title: Text(
+        'Reset Success!!',
+        style: TextStyle(
+          color: Colors.red.shade900,
+          fontSize: 20,
+        ),
+      ),
+      content: Text(
+        'ยกลิกการคัดแยกตัวถุเรียบร้อย',
+        style: TextStyle(
+          color: Colors.red.shade900,
+          fontSize: 18,
+        ),
+      ),
+    );
+  }
+
   @override
   void initState() {
     // init something.
-
+    _ChecK_arm();
     getElectronic();
     getCube();
     getCylinder();
@@ -168,6 +319,7 @@ class _Auto2State extends State<Auto2> {
             ElevatedButton(
               onPressed: () {
                 reset();
+                _showDialogReset();
                 // Navigator.pop(context);
                 Navigator.of(context).pushReplacement(
                     MaterialPageRoute(builder: (context) => Auto2()));
@@ -295,46 +447,36 @@ class _Auto2State extends State<Auto2> {
                                     valueTriangle_red != false ||
                                     valueElectronic_Servo != false ||
                                     valueElectronic_Capacitor != false ||
-                                    valueElectronic_Switch != false)
+                                    valueElectronic_Switch != false) {
                                   setCube_Green(valueCube_green);
-                                setCube_Blue(valueCube_blue);
-                                setCube_Yellow(valueCube_yellow);
-                                setCube_Red(valueCube_red);
-                                ///////////////////////////////////////////////////////////////
-                                setCylinder_Green(valueCylinder_green);
-                                setCylinder_Blue(valueCylinder_blue);
-                                setCylinder_Yellow(valueCylinder_yellow);
-                                setCylinder_Red(valueCylinder_red);
-                                ///////////////////////////////////////////////////////////////
-                                setTriangle_Green(valueTriangle_green);
-                                setTriangle_Blue(valueTriangle_blue);
-                                setTriangle_Yellow(valueTriangle_yellow);
-                                setTriangle_Red(valueTriangle_red);
-                                ////////////////////////////////////////////////////////////////
-                                setElectronic_Servo(valueElectronic_Servo);
-                                setElectronic_Capacitor(
-                                    valueElectronic_Capacitor);
-                                setElectronic_Switch(valueElectronic_Switch);
-                                Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(
-                                        builder: (context) => Board()));
-
-                                if (valueCube_red != true &&
-                                    valueCube_blue != true &&
-                                    valueCube_yellow != true &&
-                                    valueCube_green != true &&
-                                    valueCylinder_green != true &&
-                                    valueCylinder_blue != true &&
-                                    valueCylinder_yellow != true &&
-                                    valueCylinder_red != true &&
-                                    valueTriangle_green != true &&
-                                    valueTriangle_blue != true &&
-                                    valueTriangle_yellow != true &&
-                                    valueTriangle_red != true &&
-                                    valueElectronic_Servo != true &&
-                                    valueElectronic_Capacitor != true &&
-                                    valueElectronic_Switch != true)
+                                  setCube_Blue(valueCube_blue);
+                                  setCube_Yellow(valueCube_yellow);
+                                  setCube_Red(valueCube_red);
+                                  ///////////////////////////////////////////////////////////////
+                                  setCylinder_Green(valueCylinder_green);
+                                  setCylinder_Blue(valueCylinder_blue);
+                                  setCylinder_Yellow(valueCylinder_yellow);
+                                  setCylinder_Red(valueCylinder_red);
+                                  ///////////////////////////////////////////////////////////////
+                                  setTriangle_Green(valueTriangle_green);
+                                  setTriangle_Blue(valueTriangle_blue);
+                                  setTriangle_Yellow(valueTriangle_yellow);
+                                  setTriangle_Red(valueTriangle_red);
+                                  ////////////////////////////////////////////////////////////////
+                                  setElectronic_Servo(valueElectronic_Servo);
+                                  setElectronic_Capacitor(
+                                      valueElectronic_Capacitor);
+                                  setElectronic_Switch(valueElectronic_Switch);
+                                  // Navigator.of(context).pushReplacement(
+                                  //     MaterialPageRoute(
+                                  //         builder: (context) => Board()));
+                                  _showDialogFlash();
                                   Navigator.pop(context);
+                                  // _showFlash_true();
+
+                                } else {
+                                  Navigator.pop(context);
+                                }
                               },
                               child: Text('ยืนยัน'),
                             ),

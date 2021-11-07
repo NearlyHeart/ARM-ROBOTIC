@@ -1,9 +1,12 @@
 // @dart=2.9
 
+import 'package:another_flushbar/flushbar.dart';
+import 'package:arm_app/Auto.dart';
 import 'package:arm_app/Constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:control_pad/views/joystick_view.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flash/flash.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -27,6 +30,21 @@ class _ManualState extends State<Manual> {
       FirebaseDatabase.instance.reference().child('axis4');
   DatabaseReference _Ref5 =
       FirebaseDatabase.instance.reference().child('axis5');
+
+  DatabaseReference _status =
+      FirebaseDatabase.instance.reference().child('check_arm');
+
+  bool CheckARM;
+  _ChecK_arm() {
+    _status.onValue.listen((event) {
+      final data = new Map<String, dynamic>.from(event.snapshot.value);
+      final status = data['status'] as bool;
+      setState(() {
+        CheckARM = status;
+        print('status get : ${CheckARM}');
+      });
+    });
+  }
 
   _Get1() {
     _Ref0.onValue.listen((event) {
@@ -92,10 +110,12 @@ class _ManualState extends State<Manual> {
     });
   }
 
+ 
+
   @override
   void initState() {
-    // init something.
-
+    // init something.=
+    _ChecK_arm();
     _Get1();
     super.initState();
   }
@@ -117,273 +137,270 @@ class _ManualState extends State<Manual> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Arm Control")),
-      body: Container(
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                "SETTING AXIS",
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: bgAppbar,
-                  fontSize: 30,
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: Text("Arm Control"),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(height: 20),
+            Text(
+              "ควบคุมแขนกล",
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                color: bgAppbar,
+                fontSize: 30,
+              ),
+            ),
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(width: 20),
+                Text(
+                  'ข้อต่อที่ 0',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.blue[900],
+                  ),
                 ),
-              ),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(width: 20),
-                  Text(
-                    'ข้อต่อที่ 0',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.blue[900],
-                    ),
+                Slider(
+                  value: currentSliderValue0,
+                  min: 0,
+                  max: 180,
+                  label: angle0.round().toString(),
+                  onChanged: (double value) {
+                    setState(() {
+                      currentSliderValue0 = value;
+                    });
+                    upvalue0();
+                  },
+                ),
+                Text(
+                  angle0.round().toString(),
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.blue[900],
                   ),
-                  Slider(
-                    value: currentSliderValue0,
-                    min: 0,
-                    max: 180,
-                    label: angle0.round().toString(),
-                    onChanged: (double value) {
-                      setState(() {
-                        currentSliderValue0 = value;
-                      });
-                      upvalue0();
-                    },
+                ),
+                SizedBox(width: 10),
+                Text(
+                  'องศา',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.blue[900],
                   ),
-                  Text(
-                    angle0.round().toString(),
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.blue[900],
-                    ),
+                ),
+              ],
+            ),
+            SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(width: 20),
+                Text(
+                  'ข้อต่อที่ 1',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.blue[900],
                   ),
-                  SizedBox(width: 10),
-                  Text(
-                    'องศา',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.blue[900],
-                    ),
+                ),
+                Slider(
+                  value: currentSliderValue1,
+                  min: 0,
+                  max: 180,
+                  label: angle1.round().toString(),
+                  onChanged: (double value) {
+                    setState(() {
+                      currentSliderValue1 = value;
+                    });
+                    upvalue1();
+                  },
+                ),
+                Text(
+                  angle1.round().toString(),
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.blue[900],
                   ),
-                ],
-              ),
-              SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(width: 20),
-                  Text(
-                    'ข้อต่อที่ 1',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.blue[900],
-                    ),
+                ),
+                SizedBox(width: 10),
+                Text(
+                  'องศา',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.blue[900],
                   ),
-                  Slider(
-                    value: currentSliderValue1,
-                    min: 0,
-                    max: 180,
-                    label: angle1.round().toString(),
-                    onChanged: (double value) {
-                      setState(() {
-                        currentSliderValue1 = value;
-                      });
-                      upvalue1();
-                    },
+                ),
+              ],
+            ),
+            SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(width: 20),
+                Text(
+                  'ข้อต่อที่ 2',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.blue[900],
                   ),
-                  Text(
-                    angle1.round().toString(),
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.blue[900],
-                    ),
+                ),
+                Slider(
+                  value: currentSliderValue2,
+                  min: 0,
+                  max: 180,
+                  label: angle2.round().toString(),
+                  onChanged: (double value) {
+                    setState(() {
+                      currentSliderValue2 = value;
+                    });
+                    upvalue2();
+                  },
+                ),
+                Text(
+                  angle2.round().toString(),
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.blue[900],
                   ),
-                  SizedBox(width: 10),
-                  Text(
-                    'องศา',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.blue[900],
-                    ),
+                ),
+                SizedBox(width: 10),
+                Text(
+                  'องศา',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.blue[900],
                   ),
-                ],
-              ),
-              SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(width: 20),
-                  Text(
-                    'ข้อต่อที่ 2',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.blue[900],
-                    ),
+                ),
+              ],
+            ),
+            SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(width: 20),
+                Text(
+                  'ข้อต่อที่ 3',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.blue[900],
                   ),
-                  Slider(
-                    value: currentSliderValue2,
-                    min: 0,
-                    max: 180,
-                    label: angle2.round().toString(),
-                    onChanged: (double value) {
-                      setState(() {
-                        currentSliderValue2 = value;
-                      });
-                      upvalue2();
-                    },
+                ),
+                Slider(
+                  value: currentSliderValue3,
+                  min: 0,
+                  max: 180,
+                  label: angle3.round().toString(),
+                  onChanged: (double value) {
+                    setState(() {
+                      currentSliderValue3 = value;
+                    });
+                    upvalue3();
+                  },
+                ),
+                Text(
+                  angle3.round().toString(),
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.blue[900],
                   ),
-                  Text(
-                    angle2.round().toString(),
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.blue[900],
-                    ),
+                ),
+                SizedBox(width: 10),
+                Text(
+                  'องศา',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.blue[900],
                   ),
-                  SizedBox(width: 10),
-                  Text(
-                    'องศา',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.blue[900],
-                    ),
+                ),
+              ],
+            ),
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(width: 20),
+                Text(
+                  'ข้อต่อที่ 4',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.blue[900],
                   ),
-                ],
-              ),
-              SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(width: 20),
-                  Text(
-                    'ข้อต่อที่ 3',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.blue[900],
-                    ),
+                ),
+                Slider(
+                  value: currentSliderValue4,
+                  min: 0,
+                  max: 180,
+                  label: angle4.round().toString(),
+                  onChanged: (double value) {
+                    setState(() {
+                      currentSliderValue4 = value;
+                    });
+                    upvalue4();
+                  },
+                ),
+                Text(
+                  angle4.round().toString(),
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.blue[900],
                   ),
-                  Slider(
-                    value: currentSliderValue3,
-                    min: 0,
-                    max: 180,
-                    label: angle3.round().toString(),
-                    onChanged: (double value) {
-                      setState(() {
-                        currentSliderValue3 = value;
-                      });
-                      upvalue3();
-                    },
+                ),
+                SizedBox(width: 10),
+                Text(
+                  'องศา',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.blue[900],
                   ),
-                  Text(
-                    angle3.round().toString(),
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.blue[900],
-                    ),
+                ),
+              ],
+            ),
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(width: 20),
+                Text(
+                  'ข้อต่อที่ 5',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.blue[900],
                   ),
-                  SizedBox(width: 10),
-                  Text(
-                    'องศา',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.blue[900],
-                    ),
+                ),
+                Slider(
+                  value: currentSliderValue5,
+                  min: 0,
+                  max: 180,
+                  label: angle5.round().toString(),
+                  onChanged: (double value) {
+                    setState(() {
+                      currentSliderValue5 = value;
+                    });
+                    upvalue5();
+                  },
+                ),
+                Text(
+                  angle5.round().toString(),
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.blue[900],
                   ),
-                ],
-              ),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(width: 20),
-                  Text(
-                    'ข้อต่อที่ 4',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.blue[900],
-                    ),
+                ),
+                SizedBox(width: 10),
+                Text(
+                  'องศา',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.blue[900],
                   ),
-                  Slider(
-                    value: currentSliderValue4,
-                    min: 0,
-                    max: 180,
-                    label: angle4.round().toString(),
-                    onChanged: (double value) {
-                      setState(() {
-                        currentSliderValue4 = value;
-                      });
-                      upvalue4();
-                    },
-                  ),
-                  Text(
-                    angle4.round().toString(),
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.blue[900],
-                    ),
-                  ),
-                  SizedBox(width: 10),
-                  Text(
-                    'องศา',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.blue[900],
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(width: 20),
-                  Text(
-                    'ข้อต่อที่ 5',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.blue[900],
-                    ),
-                  ),
-                  Slider(
-                    value: currentSliderValue5,
-                    min: 0,
-                    max: 180,
-                    label: angle5.round().toString(),
-                    onChanged: (double value) {
-                      setState(() {
-                        currentSliderValue5 = value;
-                      });
-                      upvalue5();
-                    },
-                  ),
-                  Text(
-                    angle5.round().toString(),
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.blue[900],
-                    ),
-                  ),
-                  SizedBox(width: 10),
-                  Text(
-                    'องศา',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.blue[900],
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
