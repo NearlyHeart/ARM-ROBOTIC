@@ -3,6 +3,7 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:arm_app/Auto.dart';
 import 'package:arm_app/Constants.dart';
+import 'package:arm_app/ShowPosition.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:control_pad/views/joystick_view.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -33,6 +34,8 @@ class _ManualState extends State<Manual> {
 
   DatabaseReference _status =
       FirebaseDatabase.instance.reference().child('check_arm');
+  DatabaseReference _Save_angle =
+      FirebaseDatabase.instance.reference().child('Save_angle/position');
 
   bool CheckARM;
   _ChecK_arm() {
@@ -110,14 +113,40 @@ class _ManualState extends State<Manual> {
     });
   }
 
- 
+  void _showDialogFlash() {
+    context.showFlashDialog(
+      borderColor: Colors.green,
+      backgroundColor: Colors.white,
+      title: Text(
+        'บันทึกสำเร็จ!!',
+        style: TextStyle(
+          color: Colors.green.shade900,
+          fontSize: 20,
+        ),
+      ),
+      content: Text(
+        'บันทึกตำแหน่งแขนกลเรียบร้อยเล้ว',
+        style: TextStyle(
+          color: Colors.green.shade900,
+          fontSize: 18,
+        ),
+      ),
+    );
+  }
 
   @override
   void initState() {
-    // init something.=
+    // init something.
+
     _ChecK_arm();
     _Get1();
     super.initState();
+    _Save_angle.once().then(
+      (DataSnapshot snapshot) {
+        Map<dynamic, dynamic> value = snapshot.value;
+        value.forEach((key, value) {});
+      },
+    );
   }
 
   int angle0 = 0;
@@ -133,6 +162,10 @@ class _ManualState extends State<Manual> {
   double currentSliderValue3 = 0;
   double currentSliderValue4 = 0;
   double currentSliderValue5 = 0;
+
+  String posname = '';
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -399,6 +432,121 @@ class _ManualState extends State<Manual> {
                   ),
                 ),
               ],
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext conttext) {
+                      return AlertDialog(
+                        elevation: 20.00,
+                        backgroundColor: bgAppbar,
+                        title: Text(
+                          "บันทึกตำแหน่งแขนกล",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 20,
+                          ),
+                        ),
+                        content: Form(
+                          key: _formKey,
+                          child: TextFormField(
+                            textInputAction: TextInputAction.done,
+                            decoration: InputDecoration(
+                              labelText: "ชื่อตำแหน่ง",
+                              labelStyle: TextStyle(
+                                fontSize: 18,
+                                color: Colors.white,
+                              ),
+                              // border: InputBorder.none,
+                              fillColor: Colors.white,
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                  )),
+                            ),
+                            maxLength: 20,
+                            validator: (String value) {
+                              if (value.isEmpty) {
+                                return "กรุณาพิ่มชื่อ";
+                              } else {
+                                return null;
+                              }
+                            },
+                            onSaved: (String value) {
+                              posname = value.trim();
+                            },
+                          ),
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Text(
+                              'ยกเลิก',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              // _formKey.currentState.save();
+                              print(posname);
+                              if (_formKey.currentState.validate()) {
+                                _formKey.currentState.save();
+                                _Save_angle.push().set({
+                                  'name': posname,
+                                  'axis0': currentSliderValue0.round(),
+                                  'axis1': currentSliderValue1.round(),
+                                  'axis2': currentSliderValue2.round(),
+                                  'axis3': currentSliderValue3.round(),
+                                  'axis4': currentSliderValue4.round(),
+                                  'axis5': currentSliderValue5.round(),
+                                });
+                              }
+                              _showDialogFlash();
+                              Navigator.pop(context);
+                              print(posname);
+                            },
+                            child: Text(
+                              'เพิ่ม',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+                    });
+              },
+              child: Text(
+                'บันทึกตำแหน่งเเขนกล',
+                style: TextStyle(fontSize: 20),
+              ),
+              style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.fromLTRB(60, 10, 60, 10),
+                  primary: Color(0xFF061C31)),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Show_pos()));
+              },
+              child: Text(
+                'เลือกลำดับการทำงาน',
+                style: TextStyle(fontSize: 20),
+              ),
+              style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.fromLTRB(60, 10, 60, 10),
+                  primary: Color(0xFF061C31)),
             ),
           ],
         ),

@@ -204,11 +204,11 @@ class _SettingState extends State<Setting> {
                   _ChecK_arm();
                   if (CheckARM != false) {
                     _showFlash_true();
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Auto2()));
                   } else {
                     _showFlash_false();
                   }
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Auto2()));
                 },
                 child: Text(
                   'ควบคุมอัตโนมัติ',
@@ -229,11 +229,12 @@ class _SettingState extends State<Setting> {
                   _ChecK_arm();
                   if (CheckARM != false) {
                     _showFlash_true();
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Manual()));
                   } else {
                     _showFlash_false();
                   }
+
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Manual()));
                 },
                 child: Text(
                   'ควบคุมด้วยตนอง',

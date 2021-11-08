@@ -11,6 +11,8 @@ import 'package:arm_app/Manual.dart';
 import 'package:arm_app/Manual_R.dart';
 import 'package:arm_app/Keep/Manual_R2..dart';
 import 'package:arm_app/Setting.dart';
+import 'package:arm_app/ShowPosition.dart';
+import 'package:arm_app/Ts/Manal.dart';
 import 'package:arm_app/Ts/ts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
